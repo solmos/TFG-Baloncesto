@@ -17,6 +17,12 @@ pbp2018 <- read.csv(file="pbp2018.csv", head=TRUE, sep=",")
 View(pbp2018)
 ```
 
+#Paquetes
+```{r}
+library(dplyr)
+library(ggplot2)
+```
+
 # Code siguiendo enlace Sobe +/- ajustado en R (season 2017)
 ```{r}
 # Lista de jugadores:
