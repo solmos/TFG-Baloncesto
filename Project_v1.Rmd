@@ -24,16 +24,20 @@ players_rep <- pbp2018$player_name
 players <- unique(players_rep)
 
 # Matriz Stint y vectores respuesta:
-stints <- as.data.frame(matrix(,0,length(players)))
+stints <- as.data.frame(matrix( ,0,length(players)))
 names(stints) <- players
 stintCount = 1
 
-# Acciones que termina una posesion de pelota
+# Acciones que termina una posesion de pelota:
+## Canastas encestada (2/3/tiro libre), rebote defensivo, pelota recuperada
 shots <- pbp2018[which(pbp2018$play_type == "2FGM" | pbp2018$play_type == "3FGM" | pbp2018$play_type == "FTM" | pbp2018$play_type == "DRB" | pbp2018$play_type == "TOV"),]
 
 View(shots)
 
 awayplayersStart <- levels(droplevels(as.factor(unique(unlist(shots[1,24:28])))))
 homeplayersStart <- levels(droplevels(as.factor(unique(unlist(shots[1,19:23])))))
+
+awayplayersStart <- levels(droplevels(as.factor(unique(unlist(shots[i,24:28])))))
+homeplayersStart <- levels(droplevels(as.factor(unique(unlist(shots[i,19:23])))))
 ```
 
