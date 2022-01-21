@@ -1,0 +1,39 @@
+---
+title: "Métodos estadísticos aplicados al baloncesto"
+subtitle: "Treball Fi de Grau d'Estadística Apliacada"
+author: "Paula Moreno"
+date: "21/1/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Datos
+```{r}
+library(readr)
+pbp2018 <- read.csv(file="pbp2018.csv", head=TRUE, sep=",")
+View(pbp2018)
+```
+
+# Code siguiendo enlace Sobe +/- ajustado en R (season 2017)
+```{r}
+# Lista de jugadores:
+players_rep <- pbp2018$player_name
+players <- unique(players_rep)
+
+# Matriz Stint y vectores respuesta:
+stints <- as.data.frame(matrix(,0,length(players)))
+names(stints) <- players
+stintCount = 1
+
+# Acciones que termina una posesion de pelota
+shots <- pbp2018[which(pbp2018$play_type == "2FGM" | pbp2018$play_type == "3FGM" | pbp2018$play_type == "FTM" | pbp2018$play_type == "DRB" | pbp2018$play_type == "TOV"),]
+
+View(shots)
+
+awayplayersStart <- levels(droplevels(as.factor(unique(unlist(shots[1,24:28])))))
+homeplayersStart <- levels(droplevels(as.factor(unique(unlist(shots[1,19:23])))))
+```
+
