@@ -22,8 +22,13 @@ View(pbp2018)
 library(dplyr)
 library(ggplot2)
 ```
+#+/- SIMPLE
+```{r}
 
-# Code siguiendo enlace Sobe +/- ajustado en R (season 2017)
+```
+
+
+# Code siguiendo enlace Sobe +/- AJUSTADO en R (season 2017)
 ```{r}
 # Lista de jugadores:
 players_rep <- pbp2018$player_name
