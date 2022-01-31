@@ -89,10 +89,6 @@ GitHub (Wikipedia): https://es.wikipedia.org/wiki/GitHub
 
 
 
-
-
-
-
 # Datos
 ```{r}
 library(readr)
@@ -105,13 +101,13 @@ pbp2018 <- read.csv(file="pbp2018.csv", head=TRUE, sep=",")
 library(dplyr)
 library(ggplot2)
 ```
-# MAS/MENOS SIMPLE
+# MAS/MENOS
 ```{r}
 
 ```
 
 
-# Code siguiendo enlace Sobe MAS/MENOS AJUSTADO en R (season 2017)
+# Code siguiendo enlace sobre: MAS/MENOS AJUSTADO en R (season 2018)
 ```{r}
 # Lista de jugadores:
 players_rep <- pbp2018$player_name
@@ -126,12 +122,26 @@ stintCount = 1
 ## Canastas encestada (2/3/tiro libre), rebote defensivo, pelota recuperada
 shots <- pbp2018[which(pbp2018$play_type == "2FGM" | pbp2018$play_type == "3FGM" | pbp2018$play_type == "FTM" | pbp2018$play_type == "DRB" | pbp2018$play_type == "TOV"),]
 
-#View(shots)
+View(shots)
 
-awayplayersStart <- levels(droplevels(as.factor(unique(unlist(shots[1,24:28])))))
+awayplayersStart <- levels(droplevels(as.factor(unique(unlist(shots[30,24:28])))))
 homeplayersStart <- levels(droplevels(as.factor(unique(unlist(shots[1,19:23])))))
 
-#awayplayersStart <- levels(droplevels(as.factor(unique(unlist(shots[i,24:28])))))
-#homeplayersStart <- levels(droplevels(as.factor(unique(unlist(shots[i,19:23])))))
+num_shots <- dim(shots)[1]
+
+awayplayers<-matrix(,num_shots,5)
+
+for (i in 1:100) {
+  awayplayers[i,] <- levels(droplevels(as.factor(unique(unlist(shots[i,24:28])))))
+  homeplayers[i,] <- levels(droplevels(as.factor(unique(unlist(shots[i,19:23])))))
+
+}
+
+dim(awayplayersStart)
+View(awayplayersStart)
+
+matrix(1:10,3)
+
+
 ```
 
