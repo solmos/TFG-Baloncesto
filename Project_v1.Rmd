@@ -130,18 +130,14 @@ homeplayersStart <- levels(droplevels(as.factor(unique(unlist(shots[1,19:23]))))
 num_shots <- dim(shots)[1]
 
 awayplayers<-matrix(,num_shots,5)
+homeplayers<-matrix(,num_shots,5)
 
-for (i in 1:100) {
+### ERROR!!
+for (i in 1:num_shots) {
   awayplayers[i,] <- levels(droplevels(as.factor(unique(unlist(shots[i,24:28])))))
   homeplayers[i,] <- levels(droplevels(as.factor(unique(unlist(shots[i,19:23])))))
-
 }
 
-dim(awayplayersStart)
-View(awayplayersStart)
-
-matrix(1:10,3)
-
-
+View(awayplayers)
 ```
 
