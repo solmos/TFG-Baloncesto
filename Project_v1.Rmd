@@ -10,25 +10,51 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+# Abstract
+
+Hoy en día, el deporte es un hobby muy popular por todo el mundo. Des de pequeños, la gran mayoría de niños practican algún tipo de deporte, especialmente aquellos que son de equipo. Y gracias a los avances tecnológicos, cada vez se nos facilita más poder seguir un deporte des de casa, ver la estadística de los deportistas e incluso hay plataformas o juegos que nos permiten ser, de manera virtual, managers de los clubs y, por lo tanto, nos facilitan mucha información que antes era más difícil de saber.
+
+Eso hace que, de manera progresiva también mejore el estudio y el análisis de cada deporte, y cada vez sea más específica para cada deporte, implementando nuevos recursos para mejorar los resultados.
+
+En este trabajo estudiaremos más a fondo el Baloncesto, el segundo deporte más popular de Europa (solo superado por el futbol), y el cual yo practico des de los 4 años.
+
+Este trabajo surgió del constante pensamiento de que los análisis actuales que se hacen en este deporte en Europa son bastante pobres a nivel informativo, ya que se basan en conceptos muy básicos. El estadístico por preferencia es el llamado "Valoración" y que se originó en 1991 (hace 30 años) y des de entonces nunca se ha modificado.
+
+Es por eso que, considero que actualmente los análisis que se hacen de este deporte necesitan una actualización para llegar a informar de todos aquellos datos que hoy en día si se pueden recoger gracias a los avances tecnológicos.
+
+
+# Bibliografia
+
+Sport in Europe (Wikipedia): https://en.wikipedia.org/wiki/Sport_in_Europe
+
+Valoración (Wikipedia): https://en.wikipedia.org/wiki/Performance_Index_Rating
+
+
+
+
+
+
+
+
 # Datos
 ```{r}
 library(readr)
 pbp2018 <- read.csv(file="pbp2018.csv", head=TRUE, sep=",")
-View(pbp2018)
+#View(pbp2018)
 ```
 
-#Paquetes
+### Paquetes
 ```{r}
 library(dplyr)
 library(ggplot2)
 ```
-#+/- SIMPLE
+# MAS/MENOS SIMPLE
 ```{r}
 
 ```
 
 
-# Code siguiendo enlace Sobe +/- AJUSTADO en R (season 2017)
+# Code siguiendo enlace Sobe MAS/MENOS AJUSTADO en R (season 2017)
 ```{r}
 # Lista de jugadores:
 players_rep <- pbp2018$player_name
@@ -43,12 +69,12 @@ stintCount = 1
 ## Canastas encestada (2/3/tiro libre), rebote defensivo, pelota recuperada
 shots <- pbp2018[which(pbp2018$play_type == "2FGM" | pbp2018$play_type == "3FGM" | pbp2018$play_type == "FTM" | pbp2018$play_type == "DRB" | pbp2018$play_type == "TOV"),]
 
-View(shots)
+#View(shots)
 
 awayplayersStart <- levels(droplevels(as.factor(unique(unlist(shots[1,24:28])))))
 homeplayersStart <- levels(droplevels(as.factor(unique(unlist(shots[1,19:23])))))
 
-awayplayersStart <- levels(droplevels(as.factor(unique(unlist(shots[i,24:28])))))
-homeplayersStart <- levels(droplevels(as.factor(unique(unlist(shots[i,19:23])))))
+#awayplayersStart <- levels(droplevels(as.factor(unique(unlist(shots[i,24:28])))))
+#homeplayersStart <- levels(droplevels(as.factor(unique(unlist(shots[i,19:23])))))
 ```
 
