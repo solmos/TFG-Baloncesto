@@ -47,7 +47,7 @@ fix_lineups <- function(pbp) {
     select(-matches("_player[1-5]"), -lineups)
 
   dplyr::bind_cols(pbp_clean, lineups_df) %>%
-    fix_lineups()
+    fix_ft_lineups()
 }
 
 fix_ft_lineups <- function(pbp) {
