@@ -139,5 +139,13 @@ for (i in 1:num_shots) {
 }
 
 View(awayplayers)
+
+bothHome <- homeplayersStart %in% homeplayers
+bothAway <- awayplayersStart %in% awayplayers
+
+if(all(bothHome) == TRUE & all(bothAway)==TRUE{
+
+}
+
 ```
 
