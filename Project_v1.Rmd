@@ -7,7 +7,7 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
 ```
 
 # Abstract
@@ -101,6 +101,63 @@ pbp2018 <- read.csv(file="pbp_2018_fixed.csv", head=TRUE, sep=",")
 library(dplyr)
 library(ggplot2)
 ```
+
+#### COPY AND PASTE - Areglarlo!#####
+
+### Alineaciones con jugadores repetidos
+
+## Paquetes
+```{r}
+library(here)
+library(tidyverse)
+```
+
+## Problema
+Algunos registros en `pbp_2018.csv` contenían alineaciones con un mismo jugador que aperece dos veces.
+
+Tras inspeccionar la función del paquete eurolig que obtiene las alineaciones de estos datos, descubrí que se trataba de un error en la función que asigna las alineaciones en las situaciones en las que hay cambios de jugadores cuando hay tiros libres. Solo afectaba a las variables `away_player4` y `away_player5`.
+
+```{r}
+pbp_2018 <- read_csv("pbp2018.csv")
+## Check how many rows are affected by this
+bad_lineups <- pbp_2018 %>%
+  select(matches("_player[1-5]")) %>%
+  apply(1, function(x) max(table(x)) > 1)
+pbp_bad <- pbp_2018 %>%
+  filter(bad_lineups)
+pbp_bad %>%
+  select(season, game_code, play_number, play_type, away_player4, away_player5)
+```
+
+## Solución
+He creado unas funciones en [`fix-lineups.R`](fix-lineups.R) para corregir este error en los datos que ya tenemos.
+
+```{r}
+source(here("R", "fix-lineups.R"))
+## Function fix_lineups() only takes data from a single game,
+## so I split the data and apply the function to each splitted data frame.
+pbp_2018_fixed <- split(pbp_2018, factor(pbp_2018$game_code)) %>%
+  map_df(fix_lineups)
+## Check that this has been fixed
+pbp_2018_fixed %>%
+  select(matches("_player[1-5]")) %>%
+  apply(1, function(x) max(table(x)) > 1) %>%
+  sum()
+```
+
+Finalmente escribo los datos corregidos en `data/pbp_2018_fixed.csv`.
+
+```{r}
+write_csv(pbp_2018_fixed, here("data", "pbp_2018_fixed.csv"))
+
+pbp2018_f <- read.csv(file="pbp_2018_fixed.csv", head=TRUE, sep=",")
+#View(pbp2018_f)
+```
+
+
+
+
+***
 # MAS/MENOS
 ```{r}
 
@@ -110,7 +167,7 @@ library(ggplot2)
 # Code siguiendo enlace sobre: MAS/MENOS AJUSTADO en R (season 2018)
 ```{r}
 # Lista de jugadores:
-players_rep <- pbp2018$player_name
+players_rep <- pbp2018_f$player_name
 players <- unique(players_rep)
 
 # Matriz Stint y vectores respuesta:
@@ -120,7 +177,7 @@ stintCount = 1
 
 # Acciones que termina una posesion de pelota:
 ## Canastas encestada (2/3/tiro libre), rebote defensivo, pelota recuperada
-shots <- pbp2018[which(pbp2018$play_type == "2FGM" | pbp2018$play_type == "3FGM" | pbp2018$play_type == "FTM" | pbp2018$play_type == "DRB" | pbp2018$play_type == "TOV"),]
+shots <- pbp2018_f[which(pbp2018_f$play_type == "2FGM" | pbp2018_f$play_type == "3FGM" | pbp2018_f$play_type == "FTM" | pbp2018_f$play_type == "DRB" | pbp2018_f$play_type == "TOV"),]
 
 View(shots)
 
