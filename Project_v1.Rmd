@@ -92,7 +92,7 @@ GitHub (Wikipedia): https://es.wikipedia.org/wiki/GitHub
 # Datos
 ```{r}
 library(readr)
-pbp2018 <- read.csv(file="pbp2018.csv", head=TRUE, sep=",")
+pbp2018 <- read.csv(file="pbp_2018_fixed.csv", head=TRUE, sep=",")
 #View(pbp2018)
 ```
 
