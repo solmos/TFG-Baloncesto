@@ -12,13 +12,13 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE)
 
 # Abstract
 
-Hoy en día, el deporte es un hobby muy popular por todo el mundo. Des de pequeños, la gran mayoría de niños practican algún tipo de deporte, especialmente aquellos que son de equipo. Y gracias a los avances tecnológicos, cada vez se nos facilita más poder seguir un deporte des de casa, ver la estadística de los deportistas e incluso hay plataformas o juegos que nos permiten ser, de manera virtual, managers de los clubs y, por lo tanto, nos facilitan mucha información que antes era más difícil de saber.
+Hoy en día, el deporte es un hobby muy popular por todo el mundo. Des de pequeños, la gran mayoría de niños practican algún tipo de deporte, especialmente aquellos que son de equipo. Eso nos lleva a queres saber más del deporte, más detalles, más información. Nos entra la curiosidad de "¿quién es el mejor jugador?", "Qué equipo és mejor?" o incluso intentar prevenir qué equipo ganará segun sus resultados anteriores. Y gracias a los avances tecnológicos, cada vez se nos facilita más poder seguir un deporte des de casa, ver la estadística de los deportistas e incluso hay plataformas o juegos que nos permiten ser, de manera virtual, managers de los clubs y, por lo tanto, nos facilitan mucha información que antes era más difícil de saber.
 
 Eso hace que, de manera progresiva también mejore el estudio y el análisis de cada deporte, y cada vez sea más específica para cada deporte, implementando nuevos recursos para mejorar los resultados.
 
 En este trabajo estudiaremos más a fondo el Baloncesto, el segundo deporte más popular de Europa (solo superado por el futbol), y el cual yo practico des de los 4 años. En especial nos centraremos, en el Baloncesto profesional Europeo, de donde podemos obtener más datos.
 
-Este trabajo surgió del constante pensamiento de que los análisis actuales que se hacen en este deporte en Europa son bastante pobres a nivel informativo, ya que se basan en conceptos muy básicos. El estadístico por preferencia es el llamado "Valoración" y que se originó en 1991 (hace 30 años) y des de entonces nunca se ha modificado.
+Este trabajo surgió del constante pensamiento de que los análisis actuales que se hacen en este deporte en Europa son bastante pobres a nivel informativo, ya que se basan en conceptos muy básicos. Para que nos hagamos una idea, el estadístico por preferencia es el llamado "Valoración" y que se originó en 1991 (hace 30 años) y des de entonces nunca se ha modificado.
 
 Es por eso que, considero que actualmente los análisis que se hacen de este deporte necesitan una actualización para llegar a informar de todos aquellos datos que hoy en día si se pueden recoger gracias a los avances tecnológicos.
 
@@ -72,6 +72,45 @@ Git es un software de control de versiones diseñado por Linus Torvalds, pensand
 #### Diferencias Git vs GitHub
 
 Entonces, ¿qué diferencia Git de GitHub?. La principal diferencia es que Git es un sistema que permite establecer un control de versiones, mientras que GitHub es una plataforma que ofrece un grupo de funciones que facilitan el uso de Git y la colaboración en tiempo real, así como el almacenamiento en la nube.
+
+# El baloncesto
+
+## Historia
+
+El baloncesto es un deporte de equipo que se originó en 1891, por James Naismith, profesor de educación física en la escuela, que buscaba idear un deporte que sus alumnos pudieran practicar bajo techo, pues los duros inviernos en Nueva Inglaterra dificultaban la realización de ejercicio al aire libre. Se basó en un juego de su infancia que consisitia en alcanzar un objectivo con una piedra, e intento encargar 50 cajas para repartirlas por el gimnasio para que los alumnos encestaran en ellas. Pero al final solo pudieron obtener dos cajas de melocotones, que decidió colgar encima de las barandillas de la galería superior que rodeaba el gimnasio, a una determinada altura. 
+
+Inicialmente se jugaba con 9 jugadores por equipo en cancha (tenia un total de 18 alumnos y para que ninguno se aburiera decidió que todos jugaran a la vez) e ideó un total de trece reglas para que el juego pudiera fluir sin problemas: 
+
+1. El balón puede ser lanzado en cualquier dirección, con una o dos manos.
+2. El balón puede ser palmeado/golpeado en cualquier dirección, con una o las dos manos (nunca con el puño o mano cerrada).
+3. Los jugadores no podrán correr con el balón. Deberán pasarlo incluso desde otro lugar en el que lo cogieron, se concederá una relativa tolerancia al jugador que en plena carrera reciba el balón y deba pararse.
+4. El balón debe llevarse en las manos o entre ellas. Los brazos o el cuerpo no se deben usar para sostenerlo en ningún caso.
+5. Está prohibido cargar con el hombro contra un adversario, así como agarrar, empujar, poner la zancadilla o golpear de manera alguna al oponente. Toda infracción a esta regla por parte de cualquier jugador se considerará una falta y en caso de reincidencia, el infractor será eliminado hasta que se consiga un nuevo cesto. Si la intención al golpear es evidente, el jugador será eliminado por el resto del partido y no podrá ser reemplazado.
+6. Golpear con el puño el balón es falta, al ser violación de las reglas 2 y 4, sancionándose del mismo modo que la regla 5.
+7. Si cualquiera de los equipos hace tres faltas personales consecutivas, se contabilizará una canasta para el equipo contrario (consecutivas significa que durante ese tiempo el oponente no haya cometido ninguna falta).
+8. Se contará canasta cuando el balón sea lanzado, golpeado o palmado desde el suelo hasta la cesta y se quede en ella, los defensores nunca tienen que tocar el balón o dificulten la canasta. Si el balón se queda en el borde de la cesta sin llegar a entrar y el oponente mueve la canasta, se contabilizará como punto.
+9. Cuando el balón salga fuera del campo de juego, volverá al campo. La primera persona que lo toque lo lanzará al campo de juego. En caso de discusión el árbitro (auxiliar) realizará un salto entre dos. El que saca dispone de cinco segundos para hacerlo; si retiene el balón más tiempo, el balón pasará al equipo contrario. Si cualquiera de los equipos persiste en retrasar el juego, el árbitro auxiliar le señalará falta.
+10. El árbitro auxiliar será el juez que anote las faltas personales y avisará al árbitro principal cuando se cometan tres faltas consecutivas. Podrá descalificar a los jugadores según lo establecido en la regla número 5.
+11. El árbitro principal juzgará lo que se refiere al balón y determinará cuándo éste está en juego o ha salido fuera, a qué equipo pertenece, además de llevar el control del tiempo. Decidirá cuándo se ha marcado un tanto y contabilizará las canastas y asimismo realizará las obligaciones habituales de un árbitro.
+12. El partido constará de dos partes de 15 minutos, con 5 minutos de descanso entre las mismas.
+13. El equipo que obtenga el mayor número de cestos en ese espacio de tiempo será declarado ganador. En caso de empate, si los capitanes acuerdan hacerlo, el partido se podrá continuar hasta que se marque una canasta.
+
+Con el paso de los años, este deporte que empezó como actividad de colegio, ha ido evolucionando mucho, añadiendo más reglas, conceptos nuevos, cambios en el numero de jugadores, determinando tiempos de juego, nuevos puntages segun la distancia des de donde se anote la canasta, etc.
+
+
+Actualmente, las normas más básicas de este deporte son:
+
+- No te puedes mover con la pelota en las manos, es obligatorio botar la pelota con una mano (sino será una infracción y conllevará la perdida de pelota y saque de banda del equipo rival).
+- Cada jugador puede realizar hasta un total de 5 faltas
+
+
+## Conceptos y definiciones básicos del baloncesto:
+
+
+
+
+
+*** 
 
 # Bibliografia
 
