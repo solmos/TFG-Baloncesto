@@ -79,7 +79,7 @@ Entonces, ¿qué diferencia Git de GitHub?. La principal diferencia es que Git e
 
 El baloncesto es un deporte de equipo que se originó en 1891, por James Naismith, profesor de educación física en la escuela, que buscaba idear un deporte que sus alumnos pudieran practicar bajo techo, pues los duros inviernos en Nueva Inglaterra dificultaban la realización de ejercicio al aire libre. Se basó en un juego de su infancia que consisitia en alcanzar un objectivo con una piedra, e intento encargar 50 cajas para repartirlas por el gimnasio para que los alumnos encestaran en ellas. Pero al final solo pudieron obtener dos cajas de melocotones, que decidió colgar encima de las barandillas de la galería superior que rodeaba el gimnasio, a una determinada altura. 
 
-Inicialmente se jugaba con 9 jugadores por equipo en cancha (tenia un total de 18 alumnos y para que ninguno se aburiera decidió que todos jugaran a la vez) e ideó un total de trece reglas para que el juego pudiera fluir sin problemas: 
+Inicialmente se jugaba con 9 jugadores por equipo en cancha (tenia un total de 18 alumnos y para que todos estubieran involucrados decidió que todos jugaran a la vez) e ideó un total de trece reglas para que el juego pudiera fluir sin problemas: 
 
 1. El balón puede ser lanzado en cualquier dirección, con una o dos manos.
 2. El balón puede ser palmeado/golpeado en cualquier dirección, con una o las dos manos (nunca con el puño o mano cerrada).
@@ -95,18 +95,29 @@ Inicialmente se jugaba con 9 jugadores por equipo en cancha (tenia un total de 1
 12. El partido constará de dos partes de 15 minutos, con 5 minutos de descanso entre las mismas.
 13. El equipo que obtenga el mayor número de cestos en ese espacio de tiempo será declarado ganador. En caso de empate, si los capitanes acuerdan hacerlo, el partido se podrá continuar hasta que se marque una canasta.
 
-Con el paso de los años, este deporte que empezó como actividad de colegio, ha ido evolucionando mucho, añadiendo más reglas, conceptos nuevos, cambios en el numero de jugadores, determinando tiempos de juego, nuevos puntages segun la distancia des de donde se anote la canasta, etc.
-
+Con el paso de los años, este deporte que empezó como actividad de colegio, ha ido evolucionando mucho, añadiendo más reglas, conceptos nuevos, cambios en el número de jugadores, se ha determinado tiempos de juego, hay nuevos puntuages segun la distancia des de donde se anote la canasta, etc.
 
 Actualmente, las normas más básicas de este deporte son:
 
-- No te puedes mover con la pelota en las manos, es obligatorio botar la pelota con una mano (sino será una infracción y conllevará la perdida de pelota y saque de banda del equipo rival).
-- Cada jugador puede realizar hasta un total de 5 faltas
-
+- En las ligas superiores, hay un total de 4 cuartos de 10 minutos y pueden estar en pista 5 jugadores por equipo.
+- No te puedes desplazar con la pelota en las manos, es obligatorio botar con una mano (sino será una infracción y conllevará la perdida de pelota y saque de banda del equipo rival).
+- Cada jugador puede realizar hasta un total de 5 faltas, que sera penalizado con un saque de banda o con un tiro libre (dependera de la situación). El jugador que realizé 5 faltas será expulsado del partido.
+- El objetivo es encestar el máximo de puntos posibles, teniendo en cuenta que pueden sumar 1, 2 o 3 puntos.
 
 ## Conceptos y definiciones básicos del baloncesto:
 
+Para que podamos entender a que nos referimos en estre trabajo, es necesario comprender unos conceptos básicos de vocabulario. Tendremos en cuenta los conceptos que se necesitan para realizar la valoración del jugador y/o del equipo que se utilizan en las estadísticas federadas.
 
+- Falta: Acción en la que un defensor bloquea el avance de su rival sin tener control de balón o de manera no reglamentaria (empujar, agarrar...)
+- Perdidas de balón: cuando un equipo pierde el control del balón y pasa a ser del equipo rival.
+- Rebotes: Recuperación de pelota después de que el tiro sea realizado pero no haya encestado.
+- Recuperación de balón: Cuando un equipo consigue robar el balón al equipo rival.
+- Asistencia: Es un pase a un jugador que se encuentra en una posición de ventaja o que le ayuda a conseguir una canasta sin realizar ningun bote.
+- Tapón: Bloqueo de un tiro en el aire.
+- Más/menos: Estadístico que se determina observando la diferencia de puntos que se realizan durante los minutos que el jugador esta jugando.
+- Valoración: Estadístico que en general, engloba todo lo que pasa en el partido de manera individual. Cuanto más positivo, mejor. Sigue la siguiente formula: 
+  
+  $$V = (Puntos + Rebotes + Asistencias + Robos + Tapones + Faltas Recibidas) - (Tiros de Campo Fallados + Tiros Libres Fallados + Tapones Recibidos + Pérdidas + Faltas Realizadas) $$
 
 
 
@@ -122,6 +133,9 @@ Git (Wikipedia): https://es.wikipedia.org/wiki/Git
 
 GitHub (Wikipedia): https://es.wikipedia.org/wiki/GitHub
 
+Baloncesto (Wikipedia): https://es.wikipedia.org/wiki/Baloncesto
+
+Valoración (Wikipedia): https://es.wikipedia.org/wiki/Valoraci%C3%B3n_(baloncesto)
 
 
 ***
