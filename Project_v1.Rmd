@@ -145,7 +145,7 @@ Valoración (Wikipedia): https://es.wikipedia.org/wiki/Valoraci%C3%B3n_(balonces
 # Datos
 ```{r}
 library(readr)
-pbp2018 <- read.csv(file="pbp_2018_fixed.csv", head=TRUE, sep=",")
+pbp2018 <- read.csv(file="pbp2018.csv", head=TRUE, sep=",")
 #View(pbp2018)
 ```
 
@@ -220,7 +220,7 @@ pbp2018_f <- read.csv(file="pbp_2018_fixed.csv", head=TRUE, sep=",")
 # Code siguiendo enlace sobre: MAS/MENOS AJUSTADO en R (season 2018)
 ```{r}
 # Lista de jugadores:
-players_rep <- pbp2018_f$player_name
+players_rep <- pbp_2018_fixed$player_name
 players <- unique(players_rep)
 
 # Matriz Stint y vectores respuesta:
@@ -230,7 +230,7 @@ stintCount = 1
 
 # Acciones que termina una posesion de pelota:
 ## Canastas encestada (2/3/tiro libre), rebote defensivo, pelota recuperada
-shots <- pbp2018_f[which(pbp2018_f$play_type == "2FGM" | pbp2018_f$play_type == "3FGM" | pbp2018_f$play_type == "FTM" | pbp2018_f$play_type == "DRB" | pbp2018_f$play_type == "TOV"),]
+shots <- pbp_2018_fixed[which(pbp_2018_fixed$play_type == "2FGM" | pbp_2018_fixed$play_type == "3FGM" | pbp_2018_fixed$play_type == "FTM" | pbp_2018_fixed$play_type == "DRB" | pbp_2018_fixed$play_type == "TOV"),]
 
 View(shots)
 

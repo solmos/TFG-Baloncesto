@@ -16,7 +16,7 @@ library(tidyverse)
 
 ## Problema
 
-Algunos registros en `pbp_2018.csv` contenían alineaciones con un mismo jugador que aperece dos veces.
+Algunos registros en `pbp2018.csv` contenían alineaciones con un mismo jugador que aperece dos veces.
 
 Tras inspeccionar la función del paquete eurolig que obtiene las alineaciones de estos datos, descubrí que se trataba de un error en la función que asigna las alineaciones en las situaciones en las que hay cambios de jugadores cuando hay tiros libres. Solo afectaba a las variables `away_player4` y `away_player5`.
 
