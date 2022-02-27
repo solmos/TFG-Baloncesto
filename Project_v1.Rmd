@@ -3,7 +3,9 @@ title: "Métodos estadísticos aplicados al baloncesto"
 subtitle: "Treball Fi de Grau d'Estadística Apliacada"
 author: "Paula Moreno"
 date: "21/1/2022"
-output: html_document
+output:
+  pdf_document: default
+  github_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -201,9 +203,9 @@ pbp_2018_fixed %>%
 Finalmente escribo los datos corregidos en `data/pbp_2018_fixed.csv`.
 
 ```{r}
-write_csv(pbp_2018_fixed, here("data", "pbp_2018_fixed.csv"))
+#write_csv(pbp_2018_fixed, here("data", "pbp_2018_fixed.csv"))
 
-pbp2018_f <- read.csv(file="pbp_2018_fixed.csv", head=TRUE, sep=",")
+#pbp2018_f <- read.csv(file="pbp_2018_fixed.csv", head=TRUE, sep=",")
 #View(pbp2018_f)
 ```
 
@@ -223,6 +225,17 @@ pbp2018_f <- read.csv(file="pbp_2018_fixed.csv", head=TRUE, sep=",")
 players_rep <- pbp_2018_fixed$player_name
 players <- unique(players_rep)
 
+```
+
+```{r, include=FALSE}
+#lista referencia datos:
+sort(unique(pbp_2018_fixed$play_type))
+```
+
+EXPLICAR BIEN TODOS LOS DATOS (los utilizados almenos)!!!
+
+
+```{r}
 # Matriz Stint y vectores respuesta:
 stints <- as.data.frame(matrix( ,0,length(players)))
 names(stints) <- players
@@ -232,29 +245,47 @@ stintCount = 1
 ## Canastas encestada (2/3/tiro libre), rebote defensivo, pelota recuperada
 shots <- pbp_2018_fixed[which(pbp_2018_fixed$play_type == "2FGM" | pbp_2018_fixed$play_type == "3FGM" | pbp_2018_fixed$play_type == "FTM" | pbp_2018_fixed$play_type == "DRB" | pbp_2018_fixed$play_type == "TOV"),]
 
-View(shots)
+#View(shots)
+num_shots <- dim(shots)[1]
+
+shots$points = 0
+for(i in 1:num_shots){
+  if(shots$play_type[i] == "2FGM") shots$points[i]=2
+  if(shots$play_type[i] == "3FGM") shots$points[i]=3
+  if(shots$play_type[i] == "FTM") shots$points[i]=1
+}
 
 awayplayersStart <- levels(droplevels(as.factor(unique(unlist(shots[30,24:28])))))
 homeplayersStart <- levels(droplevels(as.factor(unique(unlist(shots[1,19:23])))))
 
-num_shots <- dim(shots)[1]
-
 awayplayers<-matrix(,num_shots,5)
 homeplayers<-matrix(,num_shots,5)
 
-### ERROR!!
 for (i in 1:num_shots) {
   awayplayers[i,] <- levels(droplevels(as.factor(unique(unlist(shots[i,24:28])))))
   homeplayers[i,] <- levels(droplevels(as.factor(unique(unlist(shots[i,19:23])))))
 }
 
-View(awayplayers)
+#View(awayplayers)
 
 bothHome <- homeplayersStart %in% homeplayers
 bothAway <- awayplayersStart %in% awayplayers
 
-if(all(bothHome) == TRUE & all(bothAway)==TRUE{
+possessions=0
 
+#NO FUNCIONA!! 
+if(all(bothHome) == TRUE & all(bothAway)==TRUE){
+  for (i in 1:num_shots) {
+  if(shots[i,'play_type'] == "FTM"| shots[i,'play_type'] == "2FGM"| shots[i,'play_type'] == "3FGM"){
+    possessions = possessions + 1
+  }
+  else if(shots[i,'play_type'] == "DRB"){
+    possessions= possessions + 1
+  }
+  else if(shots[i,'play_type'] == "TOV"){
+    possessions= possessions + 1
+  }
+  }
 }
 
 ```
