@@ -107,7 +107,7 @@ Viendo la gran cantidad de datos que se pueden extraer de cada partido (y de cad
 
 ## Boxscore
 
-El primer análisis que se hizo fue un *boxscore* (Caja de puntuación) donde se recopilaba únicamente los puntos de cada jugador según el valor de esta y las faltas realizadas. Posteriormente, se fue mejorando añadiendo conceptos como rebotes, tapones, perdidas de balón, recuperaciones de balón... Y se añadió el estadístico por defecto que se realiza a partir de todos estos datos: "Valoración" (en inglés PIR, *Performance Index Rating*) que engloba todo lo básico que pasa en el partido de manera individual y que, cuanto más positivo, mejor. Este estadístico se calcula utilizando la siguiente fórmula:
+El primer análisis que se hizo fue un *Box Score* (Caja de puntuación) donde se recopilaba únicamente los puntos de cada jugador según el valor de esta y las faltas realizadas. Posteriormente, se fue mejorando añadiendo conceptos como rebotes, tapones, perdidas de balón, recuperaciones de balón... Y se añadió el estadístico (que acutalmente es por defecto) que se realiza a partir de todos estos datos: "Valoración" (en inglés PIR, *Performance Index Rating*) que engloba todo lo básico que pasa en el partido de manera individual y que, cuanto más positivo, mejor. Este estadístico se calcula utilizando la siguiente fórmula:
 
   $$PIR = (Puntos + Rebotes + Asistencias + Robos + Tapones + Faltas Recibidas) - (Tiros de Campo Fallados + Tiros Libres Fallados + Tapones Recibidos + Pérdidas + Faltas Realizadas) $$
 
@@ -117,8 +117,21 @@ El primer análisis que se hizo fue un *boxscore* (Caja de puntuación) donde se
 
 (en el [Anexo 1](#Anexo-1:-Descripción-de-las-variables) encontraréis la descripción de cada variable)
 
+Posteriormente, se añadió la variable "Más/Menos" (P/M, *Plus/Minus*) que tiene que ver con la diferencia de puntos en el marcador durante el tiempo que el jugador está en pista. Esta variable sirve para ver la contribución de los jugadores cuando están en pista. Todos los jugadores parten inicialmente con un 0, y según van entrando y saliendo de la pista, esta variable se va actualizando. Por ejemplo, los jugadores que son del quinteto inicial, empiezan con el marcador 0 - 0, y un P/M = 0. Si en el minuto 5, se substituye un jugador en cancha del equipo local (J1) por otro que está descansando (J2), y el marcador va 12 - 7, el P/M del J1 pasará a ser +5. Y si al cabo de 3 minutos, se sustituye el J2 por otro (J3) y el marcador ahora va 20 - 9, el P/M del J2 será +6 ($ (20-12) - (9-7) = 8 - 2 = +6 $).
+
+Aunque un *Box Score* es muy útil para realizar análisis básicos, ya que es muy visual y cualquier persona sin la necesidad de muchos recursos puede analizar y predecir ciertos valores, pero estadísticamente perdemos una parte importante de la información de los datos, puesto que no nos los muestra progresivamente, sino que nos da los valores acumulados al final del tiempo establecido, y muchas veces contiene información engañosa, especialmente en las estadísticas defensivas.
+
+Por lo que, para el desarrollo temporal del partido y para conocer cierta información de equipo que piden entrenadores y clubs, no nos sirve (como por ejemplo la eficacia de los quintetos, el desarrollo del marcador o de cualquier otra variable del equipo entero durante un tiempo determinado del partido, etc.)
 
 ## play-by-play 
+
+Este tipo de recogida de información se creo para solucionar el problema que teniamos con el *Box Score*. Los datos de *Play-by-Play* (PBP) han sido la fuente principal de muchas estadísticas avanzadas, como el más-menos ajustado, que se desarrollará en este trabajo.
+
+Jugada por jugada proporciona una transcripción del juego en un formato de eventos individuales. Los datos típicos de jugada por jugada deben tener la siguiente información:
++ El tiempo de la posesión,
++ El jugador que inició la posesión (en caso de robo o rebote defensivo,
++ El jugador contrario que inició la posesión (en caso de un tiro fallado o pérdida de balón), incluida la ubicación en el piso desde donde se realizó el tiro y algunos otros identificadores únicos que usamos para clasificar el tipo de posesión.
+
 
 ## shot-charts
 
