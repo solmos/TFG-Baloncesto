@@ -111,9 +111,9 @@ El primer análisis que se hizo fue un *boxscore* (Caja de puntuación) donde se
 
   $$PIR = (Puntos + Rebotes + Asistencias + Robos + Tapones + Faltas Recibidas) - (Tiros de Campo Fallados + Tiros Libres Fallados + Tapones Recibidos + Pérdidas + Faltas Realizadas) $$
 
-![Imagen 1. Boxscore del partido de la NBA de Philadelphia Warriors contra New York Knicks, del 2 de Marzo de 1962](images/BoxScore1962.jpg)
+![Imagen 1. Boxscore del partido de la NBA de Philadelphia Warriors contra New York Knicks, del 2 de Marzo de 1962](imagenes/BoxScore1962.jpg)
 
-![Imagen 2. Boxscore del partido de la Euroliga de Real Madrid contra FC Barcelona, del 11 de Febrero del 2022](images/BoxScore2022_EuroligaBarca.JPG)
+![Imagen 2. Boxscore del partido de la Euroliga de Real Madrid contra FC Barcelona, del 11 de Febrero del 2022](imagenes/BoxScore2022_EuroligaBarca.JPG)
 
 (en el [Anexo 1](#Anexo-1:-Descripción-de-las-variables) encontraréis la descripción de cada variable)
 
