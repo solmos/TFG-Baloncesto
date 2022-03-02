@@ -1,6 +1,6 @@
 ---
 title: "Métodos estadísticos aplicados al baloncesto"
-subtitle: "Treball Fi de Grau d'Estadística Apliacada"
+subtitle: "Trabajo Fin de Grado Estadística Apliacada"
 author: "Paula Moreno"
 date: "21/1/2022"
 output:
@@ -14,19 +14,19 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE)
 
 # Abstract
 
-Hoy en día, el deporte es un hobby muy popular por todo el mundo. Des de pequeños, la gran mayoría de niños practican algún tipo de deporte, especialmente aquellos que son de equipo. Eso nos lleva a queres saber más del deporte, más detalles, más información. Nos entra la curiosidad de "¿quién es el mejor jugador?", "Qué equipo és mejor?" o incluso intentar prevenir qué equipo ganará segun sus resultados anteriores. Y gracias a los avances tecnológicos, cada vez se nos facilita más poder seguir un deporte des de casa, ver la estadística de los deportistas e incluso hay plataformas o juegos que nos permiten ser, de manera virtual, managers de los clubs y, por lo tanto, nos facilitan mucha información que antes era más difícil de saber.
+Hoy en día, el deporte es un hobby muy popular por todo el mundo. Des de pequeños, la gran mayoría de niños practican algún tipo de deporte, especialmente aquellos que son de equipo. Eso nos lleva a querer saber más del deporte, más detalles, más información. Nos entra la curiosidad de "¿quién es el mejor jugador?", "Qué equipo es mejor?", o incluso intentar prevenir qué equipo ganará según sus resultados anteriores. Y gracias a los avances tecnológicos, cada vez se nos facilita más poder seguir un deporte des de casa, ver la estadística de los deportistas e incluso hay plataformas o juegos que nos permiten ser, de manera virtual, managers de los clubs y, por lo tanto, nos facilitan mucha información que antes era más difícil de saber.
 
-Eso hace que, de manera progresiva también mejore el estudio y el análisis de cada deporte, y cada vez sea más específica para cada deporte, implementando nuevos recursos para mejorar los resultados.
+Eso hace que, de manera progresiva, también mejore el estudio y el análisis de cada deporte, y cada vez sea más específica para cada deporte, implementando nuevos recursos para mejorar los resultados.
 
-En este trabajo estudiaremos más a fondo el Baloncesto, el segundo deporte más popular de Europa (solo superado por el futbol), y el cual yo practico des de los 4 años. En especial nos centraremos, en el Baloncesto profesional Europeo, de donde podemos obtener más datos.
+En este trabajo estudiaremos más a fondo el Baloncesto, el segundo deporte más popular de Europa (solo superado por el futbol), y el cual yo tengo relación personal, ya que lo practico des de los 4 años. En especial nos centraremos en el Baloncesto profesional Europeo, de donde podemos obtener más datos.
 
-Este trabajo surgió del constante pensamiento de que los análisis actuales que se hacen en este deporte en Europa son bastante pobres a nivel informativo, ya que se basan en conceptos muy básicos. Para que nos hagamos una idea, el estadístico por preferencia es el llamado "Valoración" y que se originó en 1991 (hace 30 años) y des de entonces nunca se ha modificado.
+Este trabajo surgió del constante pensamiento de que los análisis actuales que se hacen en este deporte en Europa son bastante pobres a nivel informativo, puesto que se basan en conceptos muy básicos. Para que nos hagamos una idea, el estadístico por preferencia es el llamado "Valoración" y que se originó en 1991 (hace 30 años) y des de entonces nunca se ha modificado.
 
 Es por eso que, considero que actualmente los análisis que se hacen de este deporte necesitan una actualización para llegar a informar de todos aquellos datos que hoy en día si se pueden recoger gracias a los avances tecnológicos.
 
 # Contenido
 
-0. Recursos informaticos nuevos que se han utilizado para hacer este trebajo: GitHub. Breve explicacion de qué es, como funciona y ventajas que tiene.
+0. Recursos informaticos nuevos que se han utilizado para hacer este trebajo: GitHub. Explicacion de qué es, como funciona y ventajas que tiene.
 
 1. Introducción al baloncesto y breve explicación de cómo se juega (historia, conceptos importantes de conocer, y metodologia del juego)
 
@@ -38,23 +38,22 @@ Es por eso que, considero que actualmente los análisis que se hacen de este dep
 
 # Recursos Informaticos
 
-Para realizar este trabajo, mi tutor Sergio Olmos, me recomendo utilizar GitHub porque era una manera de poder compartir mi proyecto de Markdown con mis tutores de manera constante. Requeria trabajar con el proyecto publicado en dicha plataforma y de manera automática, cuando yo modificara mi archivo, ellos podrian ver este cambio al momento. Yo desconocia totalmente de este espacio, por lo que una parte de mi trabajo era aprender a trabajar en GitHub.
+Para realizar este trabajo, mi tutor Sergio Olmos, me recomendó utilizar GitHub porque era una manera de poder compartir mi proyecto de Markdown con mis tutores de manera constante. Requería trabajar con el proyecto publicado en dicha plataforma y de manera automática, cuando yo modificara mi archivo, ellos podrían ver este cambio al momento. Yo desconocía totalmente de este espacio, por lo que una parte de mi trabajo era aprender a trabajar en GitHub.
 
 ### ¿Qué es GitHub?
 
 GitHub es una plataforma de alojamiento, propiedad de Microsoft, que ofrece a los desarrolladores la posibilidad de crear repositorios de código y guardarlos en la nube de forma segura, usando un sistema de control de versiones, llamado Git.
 
-Como he comentado, facilita la organización de proyectos y permite la colaboración de varios desarrolladores en tiempo real. Es decir, nos permite centralizar el contenido del repositorio para poder colaborar con los otros miembros de nuestra organización.
+Como he comentado, facilita la organización de proyectos y permite la colaboración de varios desarrolladores en tiempo real. Es decir, nos permite centralizar el contenido del repositorio para poder colaborar con los otros miembros de nuestro grupo des de varios dispositivos.
 
-GitHub esta basada en el sistema de control de versiones distribuida de Git, por lo que se puede contar con sus funciones y herramientas, aunque GitHub ofrece varias opciones adicionales y su interfaz es mucho más fácil de manejar, por lo que no es absolutamente necesario que las personas que lo usan tengan un gran conocimiento técnico. 
+GitHub está basada en el sistema de control de versiones distribuida de Git, por lo que se puede contar con sus funciones y herramientas, aunque GitHub ofrece varias opciones adicionales y su interfaz es mucho más fácil de manejar, por lo que no es absolutamente necesario que las personas que lo utilizan tengan un gran conocimiento técnico.
 
 ### Ventajas
 
-Existe un gran número de razones que convierten a GitHub en una gran opción para el control y gestión de tus proyectos de código. Aquí algunas de ellas:
+Hay un gran número de razones por las que GitHub es una gran opción para el control y gestión de proyectos de código. Como por ejemplo:
 
 - GitHub permite que alojemos proyectos en repositorios de forma gratuita
-- Te brinda la posibilidad de personalizar tu perfil en la plataforma
-- Los repositorios son públicos por defecto. Sin embargo, GitHub te permite también alojar tus proyectos de forma privada
+- Los repositorios son públicos por defecto. Sin embargo, GitHub te permite también alojar tus proyectos de manera privada
 - Puedes crear y compartir páginas web estáticas con GitHub Pages
 - Facilita compartir tus proyectos de una forma mucho más fácil y crear un portafolio
 - Te permite colaborar para mejorar los proyectos de otros y a otros mejorar o aportar a los tuyos
@@ -63,9 +62,9 @@ Existe un gran número de razones que convierten a GitHub en una gran opción pa
 
 ### ¿Qué es el control de versiones?
 
-Se le llama control de versiones a la administración de los cambios que se realizan sobre los elementos o la configuración de algún proyecto. En otras palabras, el control de versiones sirve para conocer y autorizar los cambios que realicen los colaboradores en tu proyecto, guardando información de qué incluyen los cambios y cuándo se hicieron. Este control comienza con una versión básica del documento y luego va guardando los cambios que se realicen a lo largo del proyecto.
+Se le llama control de versiones a la administración de los cambios que se realizan sobre los elementos o la configuración de algún proyecto. En otras palabras, el control de versiones sirve para conocer y autorizar los cambios que realicen los colaboradores en tu proyecto, guardando información extra de qué están incluyendo los cambios y cuándo se hicieron. Este control comienza con una versión básica del documento y luego va guardando los cambios que se hagan a lo largo del proyecto.
 
-El control de versiones es una herramienta valiosísima, pues con ella puedes tener acceso a las versiones anteriores de tu proyecto si es que en algún momento no llega a funcionar de forma correcta.
+El control de versiones es una herramienta muy valiosa, pues con ella puedes tener acceso a las versiones anteriores de tu proyecto si es que en algún momento no llega a funcionar de forma correcta.
 
 ### ¿Qué es Git? 
 
@@ -77,49 +76,46 @@ Entonces, ¿qué diferencia Git de GitHub?. La principal diferencia es que Git e
 
 # El baloncesto
 
-## Historia
+## Historia y reglas básicas
 
-El baloncesto es un deporte de equipo que se originó en 1891, por James Naismith, profesor de educación física en la escuela, que buscaba idear un deporte que sus alumnos pudieran practicar bajo techo, pues los duros inviernos en Nueva Inglaterra dificultaban la realización de ejercicio al aire libre. Se basó en un juego de su infancia que consisitia en alcanzar un objectivo con una piedra, e intento encargar 50 cajas para repartirlas por el gimnasio para que los alumnos encestaran en ellas. Pero al final solo pudieron obtener dos cajas de melocotones, que decidió colgar encima de las barandillas de la galería superior que rodeaba el gimnasio, a una determinada altura. 
-
-Inicialmente se jugaba con 9 jugadores por equipo en cancha (tenia un total de 18 alumnos y para que todos estubieran involucrados decidió que todos jugaran a la vez) e ideó un total de trece reglas para que el juego pudiera fluir sin problemas: 
-
-1. El balón puede ser lanzado en cualquier dirección, con una o dos manos.
-2. El balón puede ser palmeado/golpeado en cualquier dirección, con una o las dos manos (nunca con el puño o mano cerrada).
-3. Los jugadores no podrán correr con el balón. Deberán pasarlo incluso desde otro lugar en el que lo cogieron, se concederá una relativa tolerancia al jugador que en plena carrera reciba el balón y deba pararse.
-4. El balón debe llevarse en las manos o entre ellas. Los brazos o el cuerpo no se deben usar para sostenerlo en ningún caso.
-5. Está prohibido cargar con el hombro contra un adversario, así como agarrar, empujar, poner la zancadilla o golpear de manera alguna al oponente. Toda infracción a esta regla por parte de cualquier jugador se considerará una falta y en caso de reincidencia, el infractor será eliminado hasta que se consiga un nuevo cesto. Si la intención al golpear es evidente, el jugador será eliminado por el resto del partido y no podrá ser reemplazado.
-6. Golpear con el puño el balón es falta, al ser violación de las reglas 2 y 4, sancionándose del mismo modo que la regla 5.
-7. Si cualquiera de los equipos hace tres faltas personales consecutivas, se contabilizará una canasta para el equipo contrario (consecutivas significa que durante ese tiempo el oponente no haya cometido ninguna falta).
-8. Se contará canasta cuando el balón sea lanzado, golpeado o palmado desde el suelo hasta la cesta y se quede en ella, los defensores nunca tienen que tocar el balón o dificulten la canasta. Si el balón se queda en el borde de la cesta sin llegar a entrar y el oponente mueve la canasta, se contabilizará como punto.
-9. Cuando el balón salga fuera del campo de juego, volverá al campo. La primera persona que lo toque lo lanzará al campo de juego. En caso de discusión el árbitro (auxiliar) realizará un salto entre dos. El que saca dispone de cinco segundos para hacerlo; si retiene el balón más tiempo, el balón pasará al equipo contrario. Si cualquiera de los equipos persiste en retrasar el juego, el árbitro auxiliar le señalará falta.
-10. El árbitro auxiliar será el juez que anote las faltas personales y avisará al árbitro principal cuando se cometan tres faltas consecutivas. Podrá descalificar a los jugadores según lo establecido en la regla número 5.
-11. El árbitro principal juzgará lo que se refiere al balón y determinará cuándo éste está en juego o ha salido fuera, a qué equipo pertenece, además de llevar el control del tiempo. Decidirá cuándo se ha marcado un tanto y contabilizará las canastas y asimismo realizará las obligaciones habituales de un árbitro.
-12. El partido constará de dos partes de 15 minutos, con 5 minutos de descanso entre las mismas.
-13. El equipo que obtenga el mayor número de cestos en ese espacio de tiempo será declarado ganador. En caso de empate, si los capitanes acuerdan hacerlo, el partido se podrá continuar hasta que se marque una canasta.
-
-Con el paso de los años, este deporte que empezó como actividad de colegio, ha ido evolucionando mucho, añadiendo más reglas, conceptos nuevos, cambios en el número de jugadores, se ha determinado tiempos de juego, hay nuevos puntuages segun la distancia des de donde se anote la canasta, etc.
+El baloncesto es un deporte de equipo que se originó en 1891, por James Naismith, profesor de educación física en la escuela, que buscaba idear un deporte que sus alumnos pudieran practicar bajo techo, pues los duros inviernos en Nueva Inglaterra dificultaban la realización de ejercicio al aire libre. Con el paso de los años, este deporte que empezó como actividad de colegio, ha ido evolucionando mucho, añadiendo más reglas, conceptos nuevos, límites de números de jugadores, se ha determinado tiempos de juego, las canastas tienen un valor distinto según la distancia, etc.
 
 Actualmente, las normas más básicas de este deporte son:
 
 - En las ligas superiores, hay un total de 4 cuartos de 10 minutos y pueden estar en pista 5 jugadores por equipo.
-- No te puedes desplazar con la pelota en las manos, es obligatorio botar con una mano (sino será una infracción y conllevará la perdida de pelota y saque de banda del equipo rival).
-- Cada jugador puede realizar hasta un total de 5 faltas, que sera penalizado con un saque de banda o con un tiro libre (dependera de la situación). El jugador que realizé 5 faltas será expulsado del partido.
-- El objetivo es encestar el máximo de puntos posibles, teniendo en cuenta que pueden sumar 1, 2 o 3 puntos.
+- No te puedes desplazar con la pelota en las manos, es obligatorio botar con una mano (si no será una infracción y conllevará la perdida de pelota y saque de banda del equipo rival).
+- Cada jugador puede realizar hasta un total de 5 faltas, que será penalizado con un saque de banda o con un tiro libre (dependerá de la situación). El jugador que realiza 5 faltas será expulsado del partido.
+- El objetivo es encestar el máximo de puntos posibles, teniendo en cuenta que pueden sumar 1, 2 o 3 puntos, según la distancia.
 
-## Conceptos y definiciones básicos del baloncesto:
+## Conceptos y definiciones básicas del baloncesto:
 
-Para que podamos entender a que nos referimos en estre trabajo, es necesario comprender unos conceptos básicos de vocabulario. Tendremos en cuenta los conceptos que se necesitan para realizar la valoración del jugador y/o del equipo que se utilizan en las estadísticas federadas.
+Para que podamos entender a que nos referimos en este trabajo, es necesario comprender unos conceptos básicos de vocabulario. Tendremos en cuenta los conceptos que se necesitan para realizar la valoración del jugador y/o del equipo que se utilizan en las estadísticas federadas.
 
+- Puntos: Acumulación de canastas encestadas multiplicadas por su valor, que cada jugador y/o equipo realiza durante el partido
+- Minutos: Número de minutos que el jugador está en pista
 - Falta: Acción en la que un defensor bloquea el avance de su rival sin tener control de balón o de manera no reglamentaria (empujar, agarrar...)
 - Perdidas de balón: cuando un equipo pierde el control del balón y pasa a ser del equipo rival.
-- Rebotes: Recuperación de pelota después de que el tiro sea realizado pero no haya encestado.
+- Rebotes: Recuperación de pelota después de que el tiro sea ejecutado, pero no haya encestado.
 - Recuperación de balón: Cuando un equipo consigue robar el balón al equipo rival.
-- Asistencia: Es un pase a un jugador que se encuentra en una posición de ventaja o que le ayuda a conseguir una canasta sin realizar ningun bote.
+- Asistencia: Es un pase a un jugador que se encuentra en una posición de ventaja o que le ayuda a conseguir una canasta sin hacer ningún bote.
 - Tapón: Bloqueo de un tiro en el aire.
-- Más/menos: Estadístico que se determina observando la diferencia de puntos que se realizan durante los minutos que el jugador esta jugando.
-- Valoración: Estadístico que en general, engloba todo lo que pasa en el partido de manera individual. Cuanto más positivo, mejor. Sigue la siguiente formula: 
-  
-  $$V = (Puntos + Rebotes + Asistencias + Robos + Tapones + Faltas Recibidas) - (Tiros de Campo Fallados + Tiros Libres Fallados + Tapones Recibidos + Pérdidas + Faltas Realizadas) $$
+
+
+## Análisis
+
+Viendo la gran cantidad de datos que se pueden extraer de cada partido (y de cada equipo), se han ido creando análisis que recogen estos datos y los analizan para ayudarnos a identificar y desarrollar hipótesis sobre cada jugador y/o equipo.
+
+## Boxscore
+
+El primer análisis que se hizo fue un *boxscore* (Caja de puntuación) donde se recopilaba únicamente los puntos de cada jugador según el valor de esta y las faltas realizadas. Posteriormente, se fue mejorando añadiendo conceptos como rebotes, tapones, perdidas de balón, recuperaciones de balón... Y se añadió el estadístico por defecto que se realiza a partir de todos estos datos: "Valoración" (en inglés PIR, *Performance Index Rating*) que engloba todo lo básico que pasa en el partido de manera individual y que, cuanto más positivo, mejor. Este estadístico se calcula utilizando la siguiente fórmula:
+
+  $$PIR = (Puntos + Rebotes + Asistencias + Robos + Tapones + Faltas Recibidas) - (Tiros de Campo Fallados + Tiros Libres Fallados + Tapones Recibidos + Pérdidas + Faltas Realizadas) $$
+
+![Imagen 1. Boxscore del partido de la NBA de Philadelphia Warriors contra New York Knicks, del 2 de Marzo de 1962](images/BoxScore1962.jpg)
+
+![Imagen 2. Boxscore del partido de la Euroliga de Real Madrid contra FC Barcelona, del 11 de Febrero del 2022](images/BoxScore2022_EuroligaBarca.JPG)
+
+(en el [Anexo 1](#Anexo-1:-Descripción-de-las-variables) encontraréis la descripción de cada variable)
 
 
 
@@ -139,6 +135,7 @@ Baloncesto (Wikipedia): https://es.wikipedia.org/wiki/Baloncesto
 
 Valoración (Wikipedia): https://es.wikipedia.org/wiki/Valoraci%C3%B3n_(baloncesto)
 
+# Anexo 1: Descripción de las variables
 
 ***
 
