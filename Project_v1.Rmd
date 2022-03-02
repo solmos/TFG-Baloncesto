@@ -118,6 +118,9 @@ El primer análisis que se hizo fue un *boxscore* (Caja de puntuación) donde se
 (en el [Anexo 1](#Anexo-1:-Descripción-de-las-variables) encontraréis la descripción de cada variable)
 
 
+## play-by-play 
+
+## shot-charts
 
 *** 
 
@@ -136,6 +139,15 @@ Baloncesto (Wikipedia): https://es.wikipedia.org/wiki/Baloncesto
 Valoración (Wikipedia): https://es.wikipedia.org/wiki/Valoraci%C3%B3n_(baloncesto)
 
 # Anexo 1: Descripción de las variables
+
+- MIN (*Minutes*): Minutos totales jugados
+- PTS (*points*): Puntos totales realizados
+- 2FGA (*2-point Field Goals Attempted*): Número de canastas de 2 puntos inte 
+- 2FGM (*2-point Field Goals Made*): Número de canastas de 2 puntos anotadas
+- 3FGA (*3-point Field Goals Attempted*): Número de canastas de 3 puntos ("triples") realizadas
+- 3FGM (*3-point Field Goals Made*): Número de canastas de 3 puntos ("triples") anotadas
+- FTA (*Free Throws Attempted*): Número de tiros libres realizados
+- FTM (*Free Throws Made*): Número de tiros libres anotados
 
 ***
 
