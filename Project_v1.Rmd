@@ -142,11 +142,11 @@ Valoración (Wikipedia): https://es.wikipedia.org/wiki/Valoraci%C3%B3n_(balonces
 
 - MIN (*Minutes*): Minutos totales jugados
 - PTS (*points*): Puntos totales realizados
-- 2FGA (*2-point Field Goals Attempted*): Número de canastas de 2 puntos inte 
+- 2FGA (*2-point Field Goals Attempted*): Número de canastas de 2 puntos intentadas
 - 2FGM (*2-point Field Goals Made*): Número de canastas de 2 puntos anotadas
-- 3FGA (*3-point Field Goals Attempted*): Número de canastas de 3 puntos ("triples") realizadas
+- 3FGA (*3-point Field Goals Attempted*): Número de canastas de 3 puntos ("triples") intentadas
 - 3FGM (*3-point Field Goals Made*): Número de canastas de 3 puntos ("triples") anotadas
-- FTA (*Free Throws Attempted*): Número de tiros libres realizados
+- FTA (*Free Throws Attempted*): Número de tiros libres intentados
 - FTM (*Free Throws Made*): Número de tiros libres anotados
 
 ***
