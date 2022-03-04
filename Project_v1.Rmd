@@ -24,7 +24,7 @@ Este trabajo surgió del constante pensamiento de que los análisis actuales que
 
 Es por eso que, considero que actualmente los análisis que se hacen de este deporte necesitan una actualización para llegar a informar de todos aquellos datos que hoy en día si se pueden recoger gracias a los avances tecnológicos.
 
-# Contenido
+# Contenido (Borrador)
 
 0. Recursos informaticos nuevos que se han utilizado para hacer este trebajo: GitHub. Explicacion de qué es, como funciona y ventajas que tiene.
 
@@ -127,10 +127,10 @@ Por lo que, para el desarrollo temporal del partido y para conocer cierta inform
 
 Este tipo de recogida de información se creo para solucionar el problema que teniamos con el *Box Score*. Los datos de *Play-by-Play* (PBP) han sido la fuente principal de muchas estadísticas avanzadas, como el más-menos ajustado, que se desarrollará en este trabajo.
 
-Jugada por jugada proporciona una transcripción del juego en un formato de eventos individuales. Los datos típicos de jugada por jugada deben tener la siguiente información:
-+ El tiempo de la posesión,
-+ El jugador que inició la posesión (en caso de robo o rebote defensivo,
-+ El jugador contrario que inició la posesión (en caso de un tiro fallado o pérdida de balón), incluida la ubicación en el piso desde donde se realizó el tiro y algunos otros identificadores únicos que usamos para clasificar el tipo de posesión.
+*Play-by-Play* proporciona una transcripción del juego en un formato de eventos individuales. Los datos típicos de jugada por jugada deben tener la siguiente información:
+- El tiempo de la posesión
+- El jugador que inició la posesión (en caso de robo o rebote defensivo)
+- El jugador contrario que inició la posesión (en caso de un tiro fallado o pérdida de balón), incluida la ubicación en el piso desde donde se realizó el tiro y algunos otros identificadores únicos que usamos para clasificar el tipo de posesión.
 
 
 ## shot-charts
@@ -179,7 +179,7 @@ library(dplyr)
 library(ggplot2)
 ```
 
-#### COPY AND PASTE - Areglarlo!#####
+#### CP - Areglarlo! #####
 
 ### Alineaciones con jugadores repetidos
 
@@ -241,7 +241,7 @@ Finalmente escribo los datos corregidos en `data/pbp_2018_fixed.csv`.
 ```
 
 
-# Code siguiendo enlace sobre: MAS/MENOS AJUSTADO en R (season 2018)
+# MAS/MENOS AJUSTADO  (season 2018)
 ```{r}
 # Lista de jugadores:
 players_rep <- pbp_2018_fixed$player_name
@@ -251,7 +251,7 @@ players <- unique(players_rep)
 
 ```{r, include=FALSE}
 #lista referencia datos:
-sort(unique(pbp_2018_fixed$play_type))
+(var <- sort(unique(pbp_2018_fixed$play_type)))
 ```
 
 EXPLICAR BIEN TODOS LOS DATOS (los utilizados almenos)!!!
@@ -292,14 +292,36 @@ for (i in 1:num_shots) {
 
 bothHome <- homeplayersStart %in% homeplayers
 bothAway <- awayplayersStart %in% awayplayers
+```
 
+
+```{r}
 possessions=0
+homeScore=0
+homePoints=0
+awayScore=0
+awayPoint=0
 
-#NO FUNCIONA!! 
 if(all(bothHome) == TRUE & all(bothAway)==TRUE){
-  for (i in 1:num_shots) {
+  
+  for (i in 1:num_shots) { #num_shots
   if(shots[i,'play_type'] == "FTM"| shots[i,'play_type'] == "2FGM"| shots[i,'play_type'] == "3FGM"){
     possessions = possessions + 1
+    
+    if(awayScore == shots[i, 'points_away']){
+      # Local 
+      homeScore = homeScore + shots[i, 'points']
+      homePoints = homePoints + shots[i, 'points']
+    }
+    
+#! No entiendo la diferencia entre estas dos variables... a parte, nosaltros ya la tenemos no? "points_home" y "points_away"
+    else{
+      # Visitante
+      awayScore = awayScore + shots[i, 'points']
+      awayPoint = awayPoint + shots[i, 'points']
+      
+      #print(c(awayScore, homeScore, shots[i,'points_away'], shots[i,'points_home'], possessions))
+    }
   }
   else if(shots[i,'play_type'] == "DRB"){
     possessions= possessions + 1
@@ -309,6 +331,5 @@ if(all(bothHome) == TRUE & all(bothAway)==TRUE){
   }
   }
 }
-
 ```
 
