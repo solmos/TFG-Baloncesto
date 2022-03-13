@@ -1,6 +1,6 @@
 ---
 title: "Métodos estadísticos aplicados al baloncesto"
-subtitle: "Trabajo Fin de Grado Estadística Apliacada"
+subtitle: "Trabajo Fin de Grado Estadística Aplicada"
 author: "Paula Moreno"
 date: "21/1/2022"
 output:
@@ -167,14 +167,14 @@ Valoración (Wikipedia): https://es.wikipedia.org/wiki/Valoraci%C3%B3n_(balonces
 
 
 # Datos
-```{r}
+```{r Datos}
 library(readr)
 pbp2018 <- read.csv(file="pbp2018.csv", head=TRUE, sep=",")
 #View(pbp2018)
 ```
 
 ### Paquetes
-```{r}
+```{r Paquetes}
 library(dplyr)
 library(ggplot2)
 ```
@@ -184,7 +184,7 @@ library(ggplot2)
 ### Alineaciones con jugadores repetidos
 
 ## Paquetes
-```{r}
+```{r PAquetes 2}
 library(here)
 library(tidyverse)
 ```
@@ -194,7 +194,7 @@ Algunos registros en `pbp_2018.csv` contenían alineaciones con un mismo jugador
 
 Tras inspeccionar la función del paquete eurolig que obtiene las alineaciones de estos datos, descubrí que se trataba de un error en la función que asigna las alineaciones en las situaciones en las que hay cambios de jugadores cuando hay tiros libres. Solo afectaba a las variables `away_player4` y `away_player5`.
 
-```{r}
+```{r PBP_P}
 pbp_2018 <- read_csv("pbp2018.csv")
 ## Check how many rows are affected by this
 bad_lineups <- pbp_2018 %>%
@@ -209,7 +209,7 @@ pbp_bad %>%
 ## Solución
 He creado unas funciones en [`fix-lineups.R`](fix-lineups.R) para corregir este error en los datos que ya tenemos.
 
-```{r}
+```{r PBP_S}
 source(here("R", "fix-lineups.R"))
 ## Function fix_lineups() only takes data from a single game,
 ## so I split the data and apply the function to each splitted data frame.
@@ -236,13 +236,13 @@ Finalmente escribo los datos corregidos en `data/pbp_2018_fixed.csv`.
 
 ***
 # MAS/MENOS
-```{r}
+```{r PM}
 
 ```
 
 
 # MAS/MENOS AJUSTADO  (season 2018)
-```{r}
+```{r APM}
 # Lista de jugadores:
 players_rep <- pbp_2018_fixed$player_name
 players <- unique(players_rep)
@@ -257,7 +257,7 @@ players <- unique(players_rep)
 EXPLICAR BIEN TODOS LOS DATOS (los utilizados almenos)!!!
 
 
-```{r}
+```{r APM_1}
 # Matriz Stint y vectores respuesta:
 stints <- as.data.frame(matrix( ,0,length(players)))
 names(stints) <- players
@@ -295,7 +295,7 @@ bothAway <- awayplayersStart %in% awayplayers
 ```
 
 
-```{r}
+```{r APM_2}
 possessions=0
 homeScore=0
 homePoints=0
