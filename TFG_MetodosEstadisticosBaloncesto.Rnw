@@ -18,6 +18,7 @@
 \usepackage{float}
 \usepackage{booktabs}											  	                % Nicer tables
 \usepackage{fix-cm}												  	                % Custom fontsizes
+\usepackage{hyperref}                                         % Link Clicks
 
 
 %opening
@@ -149,20 +150,138 @@ PIR = & (Puntos + Rebotes + Asistencias + Robos + Tapones + Faltas Recibidas) - 
 \end{split}
 \end{equation}
 
+\centerline{(en el \hyperref[sec:Annexo1]{Annexo 1} encontraréis la descripción de cada variable)}
+
+\vspace{0.2cm}
+
+Posteriormente, se añadió la variable "Más/Menos" (\emph{P/M, Plus/Minus}) que tiene que ver con la diferencia de puntos en el marcador durante el tiempo que el jugador está en pista. Esta variable sirve para ver la contribución de los jugadores cuando están en pista. Todos los jugadores parten inicialmente con un 0, y según van entrando y saliendo de la pista, esta variable se va actualizando. Por ejemplo, los jugadores que son del quinteto inicial, empiezan con el marcador 0 - 0, y un $P/M = 0$. Si en el minuto 5, se substituye un jugador en cancha del equipo local (J1) por otro que está descansando (J2), y el marcador va 12 - 7, el $P/M$ del J1 pasará a ser $+5$. Y si al cabo de 3 minutos, se sustituye el J2 por otro (J3) y el marcador ahora va 20 - 9, el $P/M$ del J2 será $+6$ ($(20-12) - (9-7) = 8 - 2 = +6$).
+
 \begin{figure}[H]
 \centering
 \begin{minipage}{.5\textwidth}
   \centering
+  \captionsetup{width=.9\linewidth}
   \includegraphics[width=.9\linewidth]{BoxScore1962.jpg}
   \captionof{figure}{Boxscore del partido de la NBA de Philadelphia Warriors contra New York Knicks, del 2 de Marzo de 1962}
   \label{fig:BoxScore1962}
 \end{minipage}%
 \begin{minipage}{.5\textwidth}
   \centering
-  \includegraphics[width=.9\linewidth]{BoxScore2022.jpg}
+  \captionsetup{width=.9\linewidth}
+  \includegraphics[width=.8\linewidth]{BoxScore2022.jpg}
   \captionof{figure}{Boxscore del partido de la Euroliga de Real Madrid contra FC Barcelona, del 11 de Febrero del 2022}
   \label{fig:BoxScore2022}
 \end{minipage}
 \end{figure}
+
+
+
+Aunque un \emph{Box Score} es muy útil para realizar análisis básicos, ya que es muy visual y cualquier persona sin la necesidad de muchos recursos puede analizar y predecir ciertos valores, pero estadísticamente perdemos una parte importante de la información de los datos, puesto que no nos los muestra progresivamente, sino que nos da los valores acumulados al final del tiempo establecido, y muchas veces contiene información engañosa, especialmente en las estadísticas defensivas.
+
+Por lo que, para el desarrollo temporal del partido y para conocer cierta información de equipo que piden entrenadores y clubs, no nos sirve (como por ejemplo la eficacia de los quintetos, el desarrollo del marcador o de cualquier otra variable del equipo entero durante un tiempo determinado del partido, etc.)
+
+
+\subsection{Play-by-play}
+
+Este tipo de recogida de información se creo para solucionar el problema que teniamos con el \emph{Box Score}. Los datos de \emph{Play-by-Play (PBP)} han sido la fuente principal de muchas estadísticas avanzadas, como el más-menos ajustado, que se desarrollará en este trabajo.
+
+\emph{Play-by-Play} proporciona una transcripción del juego en un formato de eventos individuales. Los datos típicos de jugada por jugada deben tener la siguiente información:
+
+\begin{itemize}
+  \item El tiempo de la posesión
+  \item El jugador que inició la posesión (en caso de robo o rebote defensivo)
+  \item El jugador contrario que inició la posesión (en caso de un tiro fallado o pérdida de balón), incluida la ubicación en el piso desde donde se realizó el tiro y algunos otros identificadores únicos que usamos para clasificar el tipo de posesión.
+\end{itemize}
+
+
+\subsection{Shot-charts}
+
+
+
+
+
+
+
+\clearpage
+
+\section{Bibliografia}
+
+\clearpage
+
+\section{Annexo}
+
+\subsection{Descripción de las variables} \label{sec:Annexo1}
+
+\begin{itemize}
+  \item MIN (\emph{Minutes}): Minutos totales jugados
+  \item PTS (\emph{Points}): Puntos totales realizados
+  \item 2FGA (\emph{2-point Field Goals Attempted}): Número de canastas de 2 puntos intentadas
+  \item 2FGM (\emph{2-point Field Goals Made}): Número de canastas de 2 puntos anotadas
+  \item 3FGA (\emph{3-point Field Goals Attempted}): Número de canastas de 3 puntos ("triples") intentadas
+  \item 3FGM (\emph{3-point Field Goals Made}): Número de canastas de 3 puntos ("triples") anotadas
+  \item FTA (\emph{Free Throws Attempted}): Número de tiros libres intentados
+  \item FTM (\emph{Free Throws Made}): Número de tiros libres anotados
+\end{itemize}
+
+\clearpage
+
+\subsection{Código R}
+
+<<Paquetes echo=TRUE>>=
+library(readr)
+
+library(dplyr)
+library(ggplot2)
+
+library(here)
+library(tidyverse)
+@
+
+<<Datos echo=TRUE, eval=TRUE, include=TRUE>>=
+pbp2018 <- read.csv(file="pbp2018.csv", head=TRUE, sep=",")
+names(pbp2018)
+@
+
+Se encontraron errores en la extracción de las alineaciones. Corrección de Sergio:
+
+<<Datos Arreglados echo=TRUE, eval=TRUE>>=
+pbp_2018 <- read_csv("pbp2018.csv")
+
+## Check how many rows are affected by this
+bad_lineups <- pbp_2018 %>%
+  select(matches("_player[1-5]")) %>%
+  apply(1, function(x) max(table(x)) > 1)
+pbp_bad <- pbp_2018 %>%
+  filter(bad_lineups)
+pbp_bad %>%
+  select(season, game_code, play_number, play_type, away_player4, away_player5)
+
+## Solución
+source(here("R", "fix-lineups.R"))
+## Function fix_lineups() only takes data from a single game,
+## so I split the data and apply the function to each splitted data frame.
+pbp_2018_fixed <- split(pbp_2018, factor(pbp_2018$game_code)) %>%
+  map_df(fix_lineups)
+## Check that this has been fixed
+pbp_2018_fixed %>%
+  select(matches("_player[1-5]")) %>%
+  apply(1, function(x) max(table(x)) > 1) %>%
+  sum()
+@
+
+\subsubsection{MAS/MENOS Clásico}
+
+\subsubsection{MAS/MENOS AJUSTADO, \emph{APM}}
+
+<<>>=
+# Lista de jugadores:
+players_rep <- pbp_2018_fixed$player_name
+players <- unique(players_rep)
+length(players) #Numero de jugadores
+unique(pbp_2018_fixed$play_type) #Variables finales BBDD
+@
+
+
+
 
 \end{document}
