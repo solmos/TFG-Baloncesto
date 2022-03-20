@@ -1,0 +1,106 @@
+---
+title: "TOY_1"
+author: "Paula Moreno Blazquez"
+date: "Enero 2022"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+```
+
+## DATA
+
+```{r}
+players_L <- paste0("LP",1:10)
+players_A <- paste0("AP",1:10)
+
+
+toy <- data.frame(
+  "id_play" = 1:15,
+  "season" = c(rep("S2017",15)),
+  "game" = c(rep("G1",10), rep("G2",5)),
+  "points_L" = c(0,0,0,2,2,2,5,5,7,7,7,7,10,10,12),
+  "points_A" = c(0,2,2,2,4,4,7,7,9,9,10,10,12,12,12),
+  "LP1" = c(rep(players_L[1],4),rep(players_L[6],5),rep(players_L[1],6)),
+  "LP2" = players_L[2],
+  "LP3" = c(rep(players_L[3],7), rep(players_L[7],2),rep(players_L[3],6)),
+  "AP1" = players_A[1],
+  "AP2" = c(rep(players_A[2],8),players_A[7], rep(players_A[2],6)),
+  "AP3" = players_A[3]
+  )
+
+toy_backup <- toy
+
+toy$PM <- toy$points_L-toy$points_A
+
+knitr::kable(toy)
+
+```
+
+## ORDENAR DF
+
+```{r}
+players_pbp <- toy[6:11] #subset de solo jugadores pbp
+resto_pbp <- cbind(toy[1:5], toy[12])
+
+## Ordenar alfabeticamente jugadores
+order_players_pbp <- lapply(1:nrow(players_pbp), function(row) 
+                     players_pbp[row, order(players_pbp[row, ], decreasing = TRUE)])
+df_order_players_pbp <- data.frame(matrix(unlist(order_players_pbp), 
+                        nrow=length(order_players_pbp), byrow=TRUE))
+names(df_order_players_pbp) <- c(paste0("LP",1:3), paste0("AP",1:3))
+
+df_new_toy <- cbind(resto_pbp, df_order_players_pbp)
+
+## Ordernar Columnas
+col_order <- c("season", "game", "id_play", "points_L", "points_A", "PM", 
+               paste0("LP",1:3), paste0("AP",1:3))
+df_order_toy <- df_new_toy[, col_order]
+knitr::kable(df_order_toy)
+```
+
+## MERGE Jugadores y Temporada+Game
+
+```{r}
+library(tidyr)
+df_order_toy <- df_order_toy %>% 
+  unite("Merged_Players", LP1:AP3, remove = TRUE) %>% 
+  unite("Merged_SG", c("season", "game"))
+
+knitr::kable(df_order_toy)
+```
+
+## UNIQUE quintetos
+
+```{r}
+library(dplyr)
+players_Merged <- df_order_toy$Merged_Players == lag(df_order_toy$Merged_Players) 
+                                            ## col_TrueFalse si son igual que lag row
+SG_DIF <- df_order_toy$Merged_SG == lag(df_order_toy$Merged_SG)   
+
+df_order_toy$TF_Cambios <- ifelse(((players_Merged == FALSE)|(SG_DIF == FALSE )), "C", "NC")  
+
+df_order_toy
+```
+
+Hasta aquí tenemos detectados cuando hay cambios
+
+## STINTS
+
+```{r}
+df_order_toy$stint <- ifelse(lead(df_order_toy$TF)=="C", df_order_toy$TF, NA) 
+                                                #Filas que tenemos que conservar
+
+last_row = tail(df_order_toy, n =1)             #Tendremos que añadirla al final.
+
+df_order_toy
+
+library(tidyr)
+STINTS <- df_order_toy %>% drop_na(stint)
+STINTS <- rbind(STINTS, last_row)
+STINTS
+
+dim(STINTS)
+```
+
