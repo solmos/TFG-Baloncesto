@@ -9,6 +9,8 @@ output: pdf_document
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
 ```
 
+# PARTE 1: Crear Stints
+
 ## DATA
 
 ```{r}
@@ -117,8 +119,61 @@ knitr::kable(df_order)
 library(tidyr)
 STINTS <- df_order %>% drop_na(stint)
 STINTS <- rbind(STINTS, last_row)
-knitr::kable(STINTS[1:6])
+STINTS$ID_Stint <- 1:nrow(STINTS)
+STINTS <- STINTS[c(9, 1:8)]
 
-dim(STINTS)
+
+STINTS_PM <- STINTS %>% select(c(ID_Stint, Merged_SG, Merged_Players, PM))
+
+
+knitr::kable(STINTS_PM)
+
+dim(STINTS_PM)
 ```
+
+
+
+# PARTE 2:  Dummys Jugadores
+
+```{r}
+vec_players <- unique(c(players_L, players_A))             #Vector con los nombres de los jugadores
+
+length(vec_players)
+
+NA_players <- matrix(data=NA, nrow = dim(STINTS_PM)[1], ncol = length(vec_players)) #Solo jugadores
+
+df_DummyPlayers <- cbind(STINTS_PM, NA_players)                     #DF con jugadores como columnas
+names(df_DummyPlayers) <- c(names(STINTS_PM), vec_players)
+
+## TRUE/FALSE si aparecen en la alineacion
+df_DummyPlayers[vec_players] <- grepl(vec_players, df_DummyPlayers$Merged_Players, fixed=TRUE) 
+
+#Me las rellena todas igual al primer jugador que aparece en vec_players (LP1). Como hacer 
+#para que rellene con todos los jugadores??
+
+#Como deberian ser:
+d1 <- grepl(vec_players[1], df_DummyPlayers$Merged_Players, fixed=TRUE) #LP1
+d2 <- grepl(vec_players[2], df_DummyPlayers$Merged_Players, fixed=TRUE) #LP2
+d3 <- grepl(vec_players[3], df_DummyPlayers$Merged_Players, fixed=TRUE) #LP3
+d4 <- grepl(vec_players[4], df_DummyPlayers$Merged_Players, fixed=TRUE) #LP4
+
+df_Dum <- data.frame(
+  "LP1" <- d1,
+  "LP2" <- d2,
+  "LP3" <- d3,
+  "LP4" <- d4
+)
+
+names(df_Dum) <- paste0("LP", 1:4)
+df_Dum
+
+```
+
+\newpage
+
+```{r}
+df_DummyPlayers
+```
+
+
 
