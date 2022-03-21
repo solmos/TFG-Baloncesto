@@ -193,6 +193,8 @@ Este tipo de recogida de información se creo para solucionar el problema que te
   \item El jugador contrario que inició la posesión (en caso de un tiro fallado o pérdida de balón), incluida la ubicación en el piso desde donde se realizó el tiro y algunos otros identificadores únicos que usamos para clasificar el tipo de posesión.
 \end{itemize}
 
+Este tipo de analisis se inicializaron en 2007 para la Euroliga (principal competición europea de baloncesto) y en 2012 para la Eurocopa (competición internacional de segundo nivel).
+
 
 \subsection{Shot-charts}
 
