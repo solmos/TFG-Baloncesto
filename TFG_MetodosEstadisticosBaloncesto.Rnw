@@ -198,8 +198,13 @@ Este tipo de analisis se inicializaron en 2007 para la Euroliga (principal compe
 
 \subsection{Shot-charts}
 
+Este tipo de análisis es de los más visuales, ya que se realiza de una manera muy sencilla: se tiene como plantilla el dibujo de una pista de baloncesto de manera vectorial, y se va colocando cada tiro realizado en la posición del tiro, el jugador y si se encesta o no. De forma general se hace escribiendo el número del jugador en la posición des de donde se ejecuta el tiro, y si encesta, se hace un círculo alrededor del número.
 
+El Short-Charts, proporciona un output visual muy fácil de interpretar, ya que es se parece a un mapa de calor y, por lo tanto, podemos observar de una manera muy rápida des de que zonas de la pista es más efectivo el equipo y/o el jugador.
 
+Una vez realizado, podemos obtener con facilidad el porcentaje de acierto del equipo y/o el jugador, o incluso, determinar el porcentaje de acierto por zonas.
+
+De este análisis, es frecuente encontrar variantes: mapa de calor del equipo, mapa de porcentajes de aciertos por zonas de la pista...
 
 
 
