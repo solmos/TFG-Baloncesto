@@ -305,8 +305,6 @@ Se encontraron errores en la extracción de las alineaciones. Corrección de Ser
 
 \subsubsection{MAS/MENOS Clásico}
 
-\subsubsection{MAS/MENOS AJUSTADO, \emph{APM}}
-
 \begin{Schunk}
 \begin{Sinput}
 > # Lista de jugadores:
@@ -327,6 +325,32 @@ Se encontraron errores en la extracción de las alineaciones. Corrección de Ser
 [22] "BLK"     "EG"      "TOUT_TV" "CMU"     "C"       "CMT"     "B"      
 [29] "AS"      "RV"      "CMD"     "D"      
 \end{Soutput}
+\begin{Sinput}
+> names(pbp_2018_fixed)
+\end{Sinput}
+\begin{Soutput}
+ [1] "season"         "game_code"      "play_number"    "team_code"     
+ [5] "player_name"    "play_type"      "time_remaining" "quarter"       
+ [9] "points_home"    "points_away"    "play_info"      "seconds"       
+[13] "home_team"      "away_team"      "home"           "team_name"     
+[17] "last_ft"        "and1"           "home_player1"   "home_player2"  
+[21] "home_player3"   "home_player4"   "home_player5"   "away_player1"  
+[25] "away_player2"   "away_player3"   "away_player4"   "away_player5"  
+[29] "lineups"       
+\end{Soutput}
+\begin{Sinput}
+> df_pbp <- pbp_2018_fixed %>% select(season, game_code, quarter, points_home, points_away, matches("_player[1-5]"))
+> df_pbp$PM <- df_pbp$points_home - df_pbp$points_away
+\end{Sinput}
+\end{Schunk}
+
+
+\subsubsection{MAS/MENOS AJUSTADO, \emph{APM}}
+
+\begin{Schunk}
+\begin{Sinput}
+> 
+\end{Sinput}
 \end{Schunk}
 
 

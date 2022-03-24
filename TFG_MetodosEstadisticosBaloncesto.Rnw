@@ -271,14 +271,24 @@ pbp_2018_fixed %>%
 
 \subsubsection{MAS/MENOS Clásico}
 
-\subsubsection{MAS/MENOS AJUSTADO, \emph{APM}}
-
 <<>>=
 # Lista de jugadores:
 players_rep <- pbp_2018_fixed$player_name
 players <- unique(players_rep)
 length(players) #Numero de jugadores
 unique(pbp_2018_fixed$play_type) #Variables finales BBDD
+
+names(pbp_2018_fixed)
+
+df_pbp <- pbp_2018_fixed %>% select(season, game_code, quarter, points_home, points_away, matches("_player[1-5]"))
+df_pbp$PM <- df_pbp$points_home - df_pbp$points_away
+@
+
+
+\subsubsection{MAS/MENOS AJUSTADO, \emph{APM}}
+
+<<>>=
+
 @
 
 
