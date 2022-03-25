@@ -15,10 +15,12 @@
 \usepackage[hang, small, labelfont=bf,up,textfont=it,up]{caption}	% Custom captions under/above floats
 \usepackage{epstopdf}											  	                % Converts .eps to .pdf
 \usepackage{subfig}												  	                % Subfigures
+\usepackage{wrapfig}
 \usepackage{float}
 \usepackage{booktabs}											  	                % Nicer tables
 \usepackage{fix-cm}												  	                % Custom fontsizes
 \usepackage{hyperref}                                         % Link Clicks
+
 
 
 %opening
@@ -55,15 +57,20 @@ Eso hace que, de manera progresiva, también mejore el estudio y el análisis de
 
 En este trabajo estudiaremos más a fondo el Baloncesto, el segundo deporte más popular de Europa (solo superado por el futbol), y el cual tengo interés personal, ya que lo practico des de los 4 años.
 
-Esta idea de estudio surgió del constante pensamiento de que los análisis actuales que se hacen en este deporte en Europa son bastante pobres a nivel informativo, puesto que se basan en conceptos muy básicos, y principalmente ofensivos (que vendría a ser el 50\% de un partido). Para que nos hagamos una idea, el estadístico por preferencia es el llamado "Valoración" y que se originó en 1991 (hace 30 años) y des de entonces nunca se ha modificado.
+Esta idea de estudio surgió del constante pensamiento de que los análisis actuales que se hacen en este deporte en Europa son bastante pobres a nivel informativo, puesto que se basan en conceptos muy básicos, y principalmente ofensivos (que vendría a ser el 50\% de un partido). Para que nos hagamos una idea, el estadístico por preferencia es el llamado \emph{Valoración} y que se originó en 1991 (hace 30 años) y des de entonces nunca se ha modificado.
 
 Es por eso que, considero que actualmente los análisis que se hacen de este deporte necesitan una actualización significativa para llegar a informar de todos aquellos datos que hoy en día si se pueden recoger gracias a los avances tecnológicos, y de los cuales no se analizan por falta de dinero o porque se consideran poco relevantes.
 
 El objetivo principal de este estudio es mejorar los análisis que se elaboran de cada partido, para poder encontrar una variable respuesta que nos diga que aportación al equipo tiene cada jugador personalmente, disminuyendo la diferencia de pesos que hay actualmente entre las aportaciones ofensivas y las aportaciones defensivas.
 
-Este documento se estructura de la siguiente manera: a continuación, se realizará una breve explicación de los recursos informáticos que se han utilizado para realizar este estudio, seguidamente se explicará brevemente los conceptos de baloncesto que son necesarios para entender los tecnicismos del trabajo y se presentaran posibles análisis que se realizan. Finalmente, se describirá la base de datos con la que se ha trabajado y sus variables, y también se explicará en profundidad el análisis que se desarrollará en este trabajo, el Más/Menos Ajustado (\emph{Adjusted Plus/Minus, APM}). EN la sección de resultados presentaremos la resolución del análisis y finalmente discutiremos, en la sección de conclusiones, los resultados obtenidos.
+Este documento se estructura de la siguiente manera: a continuación, se realizará una breve explicación de los recursos informáticos que se han utilizado para realizar este estudio, seguidamente se explicará brevemente los conceptos de baloncesto que son necesarios para entender los tecnicismos del trabajo y se presentaran posibles análisis que se realizan. Finalmente, se describirá la base de datos con la que se ha trabajado y sus variables, y también se explicará en profundidad el análisis que se desarrollará en este trabajo, el Más/Menos Ajustado (\emph{Adjusted Plus/Minus, APM}). En la sección de resultados presentaremos la resolución del análisis y finalmente discutiremos, en la sección de conclusiones, los resultados obtenidos.
 
 \section{¿Qué es GitHub?}
+
+\begin{wrapfigure}{r}{0.25\textwidth} %this figure will be at the right
+    \centering
+    \includegraphics[width=0.25\textwidth]{imagenes/GitHub-Logo.png}
+\end{wrapfigure}
 
 GitHub es una plataforma de alojamiento, propiedad de Microsoft, que ofrece a los desarrolladores la posibilidad de crear repositorios de código y guardarlos en la nube de forma segura, usando un sistema de control de versiones, llamado Git.
 
@@ -74,16 +81,16 @@ GitHub está basada en el sistema de control de versiones distribuidas de Git, p
 \subsection{Ventajas}
 
 Hay un gran número de razones por las que GitHub es una gran opción para el control y gestión de proyectos de código. Como por ejemplo:
+  
+  \begin{itemize}
 
-\begin{itemize}
-
-   \item GitHub permite que alojemos proyectos en repositorios de forma gratuita
-   \item Los repositorios son públicos por defecto. Sin embargo, GitHub te permite también alojar tus proyectos de manera privada
-   \item Puedes crear y compartir páginas web estáticas con GitHub Pages
-   \item Facilita compartir tus proyectos de una forma mucho más fácil y crear un portafolio
-   \item Te permite colaborar para mejorar los proyectos de otros y a otros mejorar o aportar a los tuyos
-   \item Ayuda reducir significativamente los errores humanos y escribir tu código más rápido con GitHub Copilot
-   \item Te da control de versiones, una herramienta muy útil.
+\item GitHub permite que alojemos proyectos en repositorios de forma gratuita
+\item Los repositorios son públicos por defecto. Sin embargo, GitHub te permite también alojar tus proyectos de manera privada
+\item Puedes crear y compartir páginas web estáticas con GitHub Pages
+\item Facilita compartir tus proyectos de una forma mucho más fácil y crear un portafolio
+\item Te permite colaborar para mejorar los proyectos de otros y a otros mejorar o aportar a los tuyos
+\item Ayuda reducir significativamente los errores humanos y escribir tu código más rápido con GitHub Copilot
+\item Te da control de versiones, una herramienta muy útil.
 
 \end{itemize}
 
@@ -105,18 +112,30 @@ Entonces, ¿qué diferencia a Git de GitHub? La principal diferencia es que Git 
 
 \subsection{Historia y reglas básicas}
 
-El baloncesto es un deporte de equipo que se originó en 1891, por James Naismith, profesor de educación física en la escuela, que buscaba idear un deporte que sus alumnos pudieran practicar bajo techo, pues los duros inviernos en Nueva Inglaterra dificultaban la realización de ejercicio al aire libre. Con el paso de los años, este deporte, que empezó como actividad de colegio, ha ido evolucionando mucho, añadiendo más reglas, conceptos nuevos, límites de números de jugadores, se ha determinado tiempos de juego, las canastas tienen un valor distinto según la distancia, etc.
+\begin{wrapfigure}{r}{0.3\linewidth}
+    \centering
+    \includegraphics[width=0.3\textwidth]{imagenes/historia_baloncesto.jpg}
+    \label{fig:hist_bskb}
+\end{wrapfigure}
+
+El baloncesto es un deporte de equipo que se originó en 1891, por James Naismith, profesor de educación física en la escuela YMCA de Springfield, Massachusetts, Estados Unidos.
+
+James buscaba idear un deporte que sus alumnos pudieran practicar bajo techo, pues los duros inviernos en Massachusetts dificultaban la realización de ejercicio al aire libre, por lo que inventó el baloncesto utilizando unas cajas de melocotones y unos balones. 
+
+Con el paso de los años, este deporte, que empezó como actividad de colegio, ha ido evolucionando mucho, añadiendo más reglas, conceptos nuevos, límites de números de jugadores, se ha determinado tiempos de juego, las canastas tienen un valor distinto según la distancia, etc.
 
 Actualmente, las normas más básicas de este deporte son:
-
+  
 \begin{itemize}
 
-   \item En las ligas superiores, hay un total de 4 cuartos de 10 minutos y pueden estar en pista 5 jugadores por equipo.
-   \item No te puedes desplazar con la pelota en las manos, es obligatorio botar con una mano (si no será una infracción y conllevará la perdida de pelota y saque de banda del equipo rival).
-   \item Cada jugador puede realizar hasta un total de 5 faltas, que será penalizado con un saque de banda o con un tiro libre (dependerá de la situación). El jugador que realiza 5 faltas será expulsado del partido.
-   \item El objetivo es encestar el máximo de puntos posibles, teniendo en cuenta que pueden sumar 1, 2 o 3 puntos, según la distancia.
-   
+  \item En las ligas superiores, hay un total de 4 cuartos de 10 minutos y pueden estar en pista 5 jugadores por equipo.
+  \item No te puedes desplazar con la pelota en las manos, es obligatorio botar con una mano (si no será una infracción y conllevará la perdida de pelota y saque de banda del equipo rival).
+  \item Cada jugador puede realizar hasta un total de 5 faltas, que será penalizado con un saque de banda o con un tiro libre (dependerá de la situación). El jugador que realiza 5 faltas será expulsado del partido.
+  \item El objetivo es encestar el máximo de puntos posibles, teniendo en cuenta que pueden sumar 1, 2 o 3 puntos, según la distancia.
+
 \end{itemize}
+
+\clearpage
 
 \subsection{Conceptos y definiciones básicas del baloncesto:}
 
@@ -124,17 +143,16 @@ Para que podamos entender a que nos referimos en este trabajo, es necesario comp
 
 \begin{itemize}
 
-   \item Puntos: Acumulación de canastas encestadas multiplicadas por su valor, que cada  jugador y/o equipo realiza durante el partido
-   \item Minutos: Número de minutos que el jugador está en pista
-   \item Falta: Acción en la que un defensor bloquea el avance de su rival sin tener control de balón o de manera no reglamentaria (empujar, agarrar...)
-   \item Pérdidas de balón: cuando un equipo pierde el control del balón y pasa a ser del equipo rival.
-   \item Rebotes: Recuperación de pelota después de que el tiro sea ejecutado, pero no haya encestado.
-   \item Recuperación de balón: Cuando un equipo consigue robar el balón al equipo rival.
-   \item Asistencia: Es un pase a un jugador que se encuentra en una posición de ventaja o que le ayuda a conseguir una canasta sin hacer ningún bote.
-   \item Tapón: Bloqueo de un tiro en el aire.
-   
-\end{itemize}
+\item Puntos: Acumulación de canastas encestadas multiplicadas por su valor, que cada  jugador y/o equipo realiza durante el partido
+\item Minutos: Número de minutos que el jugador está en pista
+\item Falta: Acción en la que un defensor bloquea el avance de su rival sin tener control de balón o de manera no reglamentaria (empujar, agarrar...)
+\item Pérdidas de balón: cuando un equipo pierde el control del balón y pasa a ser del equipo rival.
+\item Rebotes: Recuperación de pelota después de que el tiro sea ejecutado, pero no haya encestado.
+\item Recuperación de balón: Cuando un equipo consigue robar el balón al equipo rival.
+\item Asistencia: Es un pase a un jugador que se encuentra en una posición de ventaja o que le ayuda a conseguir una canasta sin hacer ningún bote.
+\item Tapón: Bloqueo de un tiro en el aire.
 
+\end{itemize}
 
 \section{Posibles análisis realizables en el baloncesto}
 
@@ -142,68 +160,98 @@ Viendo la gran cantidad de datos que se pueden extraer de cada partido (y de cad
 
 \subsection{Boxscore}
 
-El primer análisis que se hizo fue un \emph{Box Score} (Caja de puntuación) donde se recopilaba únicamente los puntos de cada jugador según el valor de esta y las faltas realizadas. Posteriormente, se fue mejorando añadiendo conceptos como rebotes, tapones, perdidas de balón, recuperaciones de balón... Y se añadió el estadístico (que acutalmente es por defecto) que se realiza a partir de todos estos datos: "Valoración" (en inglés PIR, \emph{Performance Index Rating}) que engloba todo lo básico que pasa en el partido de manera individual y que, cuanto más positivo, mejor. Este estadístico se calcula utilizando la siguiente fórmula:
-
+El primer análisis que se hizo fue un \emph{Box Score} (Caja de puntuación) donde se recopilaba únicamente los puntos de cada jugador según el valor de esta y las faltas realizadas. Posteriormente, se fue mejorando añadiendo conceptos como rebotes, tapones, perdidas de balón, recuperaciones de balón... Y se añadió el estadístico (que acutalmente es por defecto) que se realiza a partir de todos estos datos: \emph{Valoración} (en inglés PIR, \emph{Performance Index Rating}) que engloba todo lo básico que pasa en el partido de manera individual y que, cuanto más positivo, mejor. Este estadístico se calcula utilizando la siguiente fórmula:
+  
 \begin{equation} \label{eq1}
-\begin{split}
-PIR = & (Puntos + Rebotes + Asistencias + Robos + Tapones + Faltas Recibidas) - \\
-      & (Tiros de Campo Fallados + Tiros Libres Fallados + Tapones Recibidos + Pérdidas + Faltas Realizadas)
-\end{split}
+  \begin{split}
+  PIR = & (Puntos + Rebotes + Asistencias + Robos + Tapones + Faltas Recibidas) - \\
+  & (Tiros de Campo Fallados + Tiros Libres Fallados + Tapones Recibidos + Pérdidas + Faltas Realizadas)
+  \end{split}
 \end{equation}
 
 \centerline{(en el \hyperref[sec:Annexo1]{Annexo 1} encontraréis la descripción de cada variable)}
 
 \vspace{0.2cm}
 
-Posteriormente, se añadió la variable "Más/Menos" (\emph{P/M, Plus/Minus}) que tiene que ver con la diferencia de puntos en el marcador durante el tiempo que el jugador está en pista. Esta variable sirve para ver la contribución de los jugadores cuando están en pista. Todos los jugadores parten inicialmente con un 0, y según van entrando y saliendo de la pista, esta variable se va actualizando. Por ejemplo, los jugadores que son del quinteto inicial, empiezan con el marcador 0 - 0, y un $P/M = 0$. Si en el minuto 5, se substituye un jugador en cancha del equipo local (J1) por otro que está descansando (J2), y el marcador va 12 - 7, el $P/M$ del J1 pasará a ser $+5$. Y si al cabo de 3 minutos, se sustituye el J2 por otro (J3) y el marcador ahora va 20 - 9, el $P/M$ del J2 será $+6$ ($(20-12) - (9-7) = 8 - 2 = +6$).
+Posteriormente, se añadió la variable "Más/Menos" (\emph{P/M, Plus/Minus}) que tiene que ver con la diferencia de puntos en el marcador durante el tiempo que el jugador esté en pista. Esta variable sirve para ver la contribución de los jugadores cuando están en pista. Todos los jugadores parten inicialmente con un 0, y según van entrando y saliendo de la pista, esta variable se va actualizando. Por ejemplo, los jugadores que son del quinteto inicial, empiezan con el marcador 0 - 0, y un $P/M = 0$. Si en el minuto 5, se substituye un jugador en cancha del equipo local (J1) por otro que está descansando (J2), y el marcador va 12 - 7, el $P/M$ del J1 pasará a ser $+5$. Y si al cabo de 3 minutos, se sustituye el J2 por otro (J3) y el marcador ahora va 20 - 9, el $P/M$ del J2 será $+6$ ($(20-12) - (9-7) = 8 - 2 = +6$).
 
 \begin{figure}[H]
 \centering
 \begin{minipage}{.5\textwidth}
-  \centering
-  \captionsetup{width=.9\linewidth}
-  \includegraphics[width=.9\linewidth]{BoxScore1962.jpg}
-  \captionof{figure}{Boxscore del partido de la NBA de Philadelphia Warriors contra New York Knicks, del 2 de Marzo de 1962}
-  \label{fig:BoxScore1962}
+\centering
+\captionsetup{width=.8\linewidth}
+\includegraphics[width=.8\linewidth]{imagenes/BoxScore1962.jpg}
+\captionof{figure}{Boxscore del partido de la NBA de Philadelphia Warriors contra New York Knicks, del 2 de Marzo de 1962}
+\label{fig:BoxScore1962}
 \end{minipage}%
 \begin{minipage}{.5\textwidth}
-  \centering
-  \captionsetup{width=.9\linewidth}
-  \includegraphics[width=.8\linewidth]{BoxScore2022.jpg}
-  \captionof{figure}{Boxscore del partido de la Euroliga de Real Madrid contra FC Barcelona, del 11 de Febrero del 2022}
-  \label{fig:BoxScore2022}
+\centering
+\captionsetup{width=.8\linewidth}
+\includegraphics[width=.7\linewidth]{imagenes/BoxScore2022.jpg}
+\captionof{figure}{Boxscore del partido de la Euroliga de Real Madrid contra FC Barcelona, del 11 de Febrero del 2022}
+\label{fig:BoxScore2022}
 \end{minipage}
 \end{figure}
-
-
 
 Aunque un \emph{Box Score} es muy útil para realizar análisis básicos, ya que es muy visual y cualquier persona sin la necesidad de muchos recursos puede analizar y predecir ciertos valores, pero estadísticamente perdemos una parte importante de la información de los datos, puesto que no nos los muestra progresivamente, sino que nos da los valores acumulados al final del tiempo establecido, y muchas veces contiene información engañosa, especialmente en las estadísticas defensivas.
 
 Por lo que, para el desarrollo temporal del partido y para conocer cierta información de equipo que piden entrenadores y clubs, no nos sirve (como por ejemplo la eficacia de los quintetos, el desarrollo del marcador o de cualquier otra variable del equipo entero durante un tiempo determinado del partido, etc.)
 
 
+
 \subsection{Play-by-play}
+
+\begin{wrapfigure}{r}{0.4\linewidth}
+    \centering
+    \includegraphics[width=0.4\textwidth]{imagenes/PBP_RM.png}
+    \captionsetup{width=.9\linewidth}
+    \captionof{figure}{\emph{Play by play} del partido de la Euroliga de Real Madrid contra LDLC Asvel, del 17 de Marzo del 2022. Se lee de abajo hacia arriba.}
+    \label{fig:PBP_RM}
+\end{wrapfigure}
 
 Este tipo de recogida de información se creo para solucionar el problema que teniamos con el \emph{Box Score}. Los datos de \emph{Play-by-Play (PBP)} han sido la fuente principal de muchas estadísticas avanzadas, como el más-menos ajustado, que se desarrollará en este trabajo.
 
 \emph{Play-by-Play} proporciona una transcripción del juego en un formato de eventos individuales. Los datos típicos de jugada por jugada deben tener la siguiente información:
-
-\begin{itemize}
-  \item El tiempo de la posesión
-  \item El jugador que inició la posesión (en caso de robo o rebote defensivo)
-  \item El jugador contrario que inició la posesión (en caso de un tiro fallado o pérdida de balón), incluida la ubicación en el piso desde donde se realizó el tiro y algunos otros identificadores únicos que usamos para clasificar el tipo de posesión.
+  
+  \begin{itemize}
+\item El tiempo de la posesión
+\item El jugador que inició la posesión (en caso de robo o rebote defensivo)
+\item El jugador contrario que inició la posesión (en caso de un tiro fallado o pérdida de balón), incluida la ubicación en el piso desde donde se realizó el tiro y algunos otros identificadores únicos que usamos para clasificar el tipo de posesión.
 \end{itemize}
 
+Este tipo de análisis se inicializaron en 2007 para la Euroliga (principal competición europea de baloncesto) y en 2012 para la Eurocopa (competición internacional de segundo nivel).
+
+\clearpage
 
 \subsection{Shot-charts}
 
+Este tipo de análisis es de los más visuales, ya que se realiza de una manera muy sencilla: se tiene como plantilla el dibujo de una pista de baloncesto de manera vectorial, y se va colocando cada tiro realizado en la posición del tiro, el jugador y si se encesta o no. De forma general se hace escribiendo el número del jugador en la posición des de donde se ejecuta el tiro, y si encesta, se hace un círculo alrededor del número.
 
+El \emph{Shot-Charts}, proporciona un output visual muy fácil de interpretar, ya que es se parece a un mapa de calor y, por lo tanto, podemos observar de una manera muy rápida des de que zonas de la pista es más efectivo el equipo y/o el jugador.
 
+Una vez realizado, podemos obtener con facilidad el porcentaje de acierto del equipo y/o el jugador, o incluso, determinar el porcentaje de acierto por zonas.
+
+De este análisis, es frecuente encontrar variantes: mapa de calor del equipo, mapa de porcentajes de aciertos por zonas de la pista...
+
+\subsection{Graphic Stats}
 
 
 
 
 \clearpage
+
+\section{Estadístico Más/Menos (\emph{Plus/Minus})}
+
+\subsection{Normal Plus Minus, PM}
+
+\subsection{Adjusted Plus Minus, APM}
+
+\subsection{Regularized Adjusted Plus/Minus, RAPM}
+
+\subsection{Real Plus-Minus, RPM}
+
+\clearpage
+
 
 \section{Bibliografia}
 
@@ -214,19 +262,19 @@ Este tipo de recogida de información se creo para solucionar el problema que te
 \subsection{Descripción de las variables} \label{sec:Annexo1}
 
 \begin{itemize}
-  \item MIN (\emph{Minutes}): Minutos totales jugados
-  \item PTS (\emph{Points}): Puntos totales realizados
-  \item 2FGA (\emph{2-point Field Goals Attempted}): Número de canastas de 2 puntos intentadas
-  \item 2FGM (\emph{2-point Field Goals Made}): Número de canastas de 2 puntos anotadas
-  \item 3FGA (\emph{3-point Field Goals Attempted}): Número de canastas de 3 puntos ("triples") intentadas
-  \item 3FGM (\emph{3-point Field Goals Made}): Número de canastas de 3 puntos ("triples") anotadas
-  \item FTA (\emph{Free Throws Attempted}): Número de tiros libres intentados
-  \item FTM (\emph{Free Throws Made}): Número de tiros libres anotados
+\item MIN (\emph{Minutes}): Minutos totales jugados
+\item PTS (\emph{Points}): Puntos totales realizados
+\item 2FGA (\emph{2-point Field Goals Attempted}): Número de canastas de 2 puntos intentadas
+\item 2FGM (\emph{2-point Field Goals Made}): Número de canastas de 2 puntos anotadas
+\item 3FGA (\emph{3-point Field Goals Attempted}): Número de canastas de 3 puntos ("triples") intentadas
+\item 3FGM (\emph{3-point Field Goals Made}): Número de canastas de 3 puntos ("triples") anotadas
+\item FTA (\emph{Free Throws Attempted}): Número de tiros libres intentados
+\item FTM (\emph{Free Throws Made}): Número de tiros libres anotados
 \end{itemize}
 
 \clearpage
 
-\subsection{Código R}
+\subsection{Código R} \label{sec:Annexo2}
 
 \begin{Schunk}
 \begin{Sinput}
@@ -255,7 +303,7 @@ Este tipo de recogida de información se creo para solucionar el problema que te
 \end{Soutput}
 \end{Schunk}
 
-Se encontraron errores en la extracción de las alineaciones. Corrección de Sergio:
+Se encontraron errores en la extracción de las alineaciones. Corrección:
 
 \begin{Schunk}
 \begin{Sinput}
@@ -304,19 +352,17 @@ Se encontraron errores en la extracción de las alineaciones. Corrección de Ser
 \end{Schunk}
 
 \subsubsection{MAS/MENOS Clásico}
-
+    
 \begin{Schunk}
 \begin{Sinput}
+> df <- pbp_2018_fixed
 > # Lista de jugadores:
-> players_rep <- pbp_2018_fixed$player_name
-> players <- unique(players_rep)
-> length(players) #Numero de jugadores
-\end{Sinput}
-\begin{Soutput}
-[1] 253
-\end{Soutput}
-\begin{Sinput}
-> unique(pbp_2018_fixed$play_type) #Variables finales BBDD
+> players <- df %>% 
++   select(matches("player_name")) %>%
++   arrange(player_name) %>% 
++   unique
+> num_players <- dim(players)[1]    # Numero de jugadores
+> unique(df$play_type)              # Tipos de acciones
 \end{Sinput}
 \begin{Soutput}
  [1] "BP"      "TPOFF"   "2FGM"    "2FGA"    "DRB"     "3FGA"    "ORB"    
@@ -326,7 +372,7 @@ Se encontraron errores en la extracción de las alineaciones. Corrección de Ser
 [29] "AS"      "RV"      "CMD"     "D"      
 \end{Soutput}
 \begin{Sinput}
-> names(pbp_2018_fixed)
+> names(df)                         # Variables BBDD
 \end{Sinput}
 \begin{Soutput}
  [1] "season"         "game_code"      "play_number"    "team_code"     
@@ -339,21 +385,27 @@ Se encontraron errores en la extracción de las alineaciones. Corrección de Ser
 [29] "lineups"       
 \end{Soutput}
 \begin{Sinput}
-> df_pbp <- pbp_2018_fixed %>% select(season, game_code, quarter, points_home, points_away, matches("_player[1-5]"))
-> df_pbp$PM <- df_pbp$points_home - df_pbp$points_away
+> df_pbp <- df %>% 
++   select(season, game_code, quarter, points_home, points_away, matches("_player[1-5]"))
+> df_pbp$PM_Home <- df_pbp$points_home - df_pbp$points_away
+> df_pbp$PM_Away <- -df_pbp$PM_Home
+> names(df_pbp)                     # Variables finales BBDD
 \end{Sinput}
+\begin{Soutput}
+ [1] "season"       "game_code"    "quarter"      "points_home"  "points_away" 
+ [6] "home_player1" "home_player2" "home_player3" "home_player4" "home_player5"
+[11] "away_player1" "away_player2" "away_player3" "away_player4" "away_player5"
+[16] "PM_Home"      "PM_Away"     
+\end{Soutput}
 \end{Schunk}
-
-
+      
+      
 \subsubsection{MAS/MENOS AJUSTADO, \emph{APM}}
-
+    
 \begin{Schunk}
 \begin{Sinput}
-> 
+>       
 \end{Sinput}
 \end{Schunk}
-
-
-
 
 \end{document}
