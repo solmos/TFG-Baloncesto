@@ -1,0 +1,191 @@
+---
+title: "TOY_1"
+author: "Paula Moreno Blazquez"
+date: "Enero 2022"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+```
+
+```{r PAQUETES}
+library(tidyr)
+library(dplyr)
+```
+
+
+
+# PARTE 1: Crear Stints
+
+## DATA
+
+```{r}
+home_player <- paste0("home_player",1:10)
+away_player <- paste0("away_player",1:10)
+
+
+toy <- data.frame(
+  "id_play" = 1:15,
+  "season" = c(rep("S2017",15)),
+  "game_code_code" = c(rep("G1",10), rep("G2",5)),
+  "quarter" = c(rep(1,3), rep(2,2),rep(3,2),rep(4,3),rep(1,4),rep(2,1)),
+  "points_home" = c(0,0,0,2,2,2,5,5,7,7,7,7,10,10,12),
+  "points_awayway" = c(0,2,2,2,4,4,7,7,9,9,10,10,12,12,12),
+  "home_player1" = c(rep(home_player[1],4),rep(home_player[6],5),rep(home_player[1],6)),
+  "home_player2" = home_player[2],
+  "home_player3" = c(rep(home_player[3],7), rep(home_player[7],2),rep(home_player[3],6)),
+  "away_player1" = away_player[1],
+  "away_player2" = c(rep(away_player[2],8),away_player[7], rep(away_player[2],6)),
+  "away_player3" = away_player[3]
+  )
+
+toy2 <- data.frame(                         #DF2 para comprovar que funciona
+  "id_play" = 1:20,
+  "season" = c(rep("S2017",20)),
+  "game_code" = c(rep("G1",10), rep("G2",10)),
+  "quarter" = c(rep(1,3), rep(2,2),rep(3,2),rep(4,3),rep(1,4),rep(2,6)),
+  "points_home" = c(0,0,0,2,2,2,5,5,7,7,0,2,2,5,5,7,7,7,9,10),
+  "points_awayway" = c(0,2,2,2,4,4,7,7,9,9,0,0,2,2,4,4,6,6,6,6),
+  "home_player1" = c(rep(home_player[1],4),rep(home_player[6],5),rep(home_player[1],8), rep(home_player[1],3)),
+  "home_player2" = home_player[2],
+  "home_player3" = c(rep(home_player[3],7), rep(home_player[7],2),rep(home_player[3],9), rep(home_player[9],2)),
+  "away_player1" = away_player[1],
+  "away_player2" = c(rep(away_player[2],8),away_player[7], rep(away_player[2],9), rep(away_player[5],2)),
+  "away_player3" = away_player[3]
+  )
+
+
+toy_backup <- toy
+
+df <- toy2
+
+df <- df %>% unite("lineups", home_player1:away_player3, remove = TRUE)
+
+#Se crean dos PM porque depende de si eres local o visitante sera positivo o negativo
+df$PM_home <- df$points_home-df$points_away
+df$PM_away <- -df$PM_home
+
+names(df)
+
+df
+
+```
+
+## MERGE Temporada+game_code
+
+```{r}
+df_merged <- df %>%  unite("SeasonGame", c("season", "game_code"))
+df_merged
+```
+
+
+## ORDENAR DF -> Ya no hace falta
+
+```{r eval=FALSE, include=FALSE}
+players_pbp <- df %>% select(matches("_player[1-5]")) #subset de solo jugadores pbp
+resto_pbp <- df %>% select(!matches("_player[1-5]"))
+
+## Ordenar alfabeticamente jugadores
+order_players_pbp <- lapply(1:nrow(players_pbp), function(row) 
+                     players_pbp[row, order(players_pbp[row, ], decreasing = TRUE)])
+df_order_players_pbp <- data.frame(matrix(unlist(order_players_pbp), 
+                        nrow=length(order_players_pbp), byrow=TRUE))
+names(df_order_players_pbp) <- names(players_pbp)
+
+df <- cbind(resto_pbp, df_order_players_pbp)
+
+df
+```
+
+
+
+## UNIQUE quintetos
+
+```{r}
+library(dplyr)
+players_Merged <- df_merged$lineups == lag(df_merged$lineups) ## col_TrueFalse si son igual que lag row
+SeasonGame_DIF <- df_merged$SeasonGame == lag(df_merged$SeasonGame)   
+
+df_merged$TF_Cambios <- ifelse(((players_Merged == FALSE)|(SeasonGame_DIF == FALSE )), "C", "NC")
+df_merged
+```
+
+Hasta aquí tenemos detectados cuando hay cambios
+
+## STINTS
+
+```{r}
+df_merged$stint <- ifelse(lead(df_merged$TF)=="C", df_merged$TF, NA)  #Filas que tenemos que conservar
+
+last_row <- tail(df_merged, n =1)             #Tendremos que añadirla al final.
+last_row$stint <- "LastRow"
+
+df_merged
+
+STINTS <- df_merged %>% drop_na(stint)         #Eliminar NA rows
+STINTS <- rbind(STINTS, last_row)
+STINTS$ID_Stint <- 1:nrow(STINTS)
+
+STINTS_PM <- STINTS %>% select(c(ID_Stint, SeasonGame, quarter, lineups, 
+                                 PM_home, PM_away))
+
+STINTS_PM
+
+dim(STINTS_PM)
+names(STINTS_PM)
+```
+
+
+
+# PARTE 2:  Dummys Jugadores
+
+```{r eval=FALSE, include=TRUE}
+#PRUEBA1
+
+vec_players <- unique(c(home_player, away_player))             #Vector con los nombres de los jugadores
+#length(vec_players)
+
+NA_players <- matrix(data=NA, nrow = dim(STINTS_PM)[1], ncol = length(vec_players)) #Solo jugadores
+
+df_DummyPlayers <- cbind(STINTS_PM, NA_players)                     #DF con jugadores como columnas
+names(df_DummyPlayers) <- c(names(STINTS_PM), vec_players)
+
+## TRUE/FALSE si aparecen en la alineacion
+df_DummyPlayers[vec_players] <- grepl(vec_players, df_DummyPlayers$lineups, fixed=TRUE) 
+
+#Me las rellena todas igual al primer jugador que aparece en vec_players (home_player1). Como hacer 
+#para que rellene con todos los jugadores??
+
+
+#Como deberian ser:
+d1 <- grepl(vec_players[1], df_DummyPlayers$lineups, fixed=TRUE) #home_player1
+d2 <- grepl(vec_players[2], df_DummyPlayers$lineups, fixed=TRUE) #home_player2
+d3 <- grepl(vec_players[3], df_DummyPlayers$lineups, fixed=TRUE) #home_player3
+d4 <- grepl(vec_players[4], df_DummyPlayers$lineups, fixed=TRUE) #home_player4
+
+df_Dum <- data.frame(
+  "home_player1" <- d1,
+  "home_player2" <- d2,
+  "home_player3" <- d3,
+  "home_player4" <- d4
+)
+
+names(df_Dum) <- paste0("home_player", 1:4)
+df_Dum
+
+#Lo que sale
+df_DummyPlayers
+```
+
+```{r}
+#PRUEBA2 - fastDummies
+vec_players <- unique(c(home_player, away_player)) #Vector con los nombres de los jugadores
+#length(vec_players)
+
+#dummy_cols(STINTS_PM, select_columns = ??? )
+
+```
+
+
+
