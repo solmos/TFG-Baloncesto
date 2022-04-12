@@ -16,6 +16,7 @@ library(chron)                 # Para CHR_to_Time
 library(stringr)               # Para str_pad
 library(lubridate)
 library(reshape)
+library(tidyselect)
 ```
 
 
@@ -302,11 +303,9 @@ df_dummys_PM <- df_dummys %>%
                   mutate(across(matches(players), function(x) x*PM)) %>%
                   select(-c(PM))
 
-#names(df_dummys_PM)
+### PM de los mismos lineups (sin tener en cuenta SeasonGame o Quarter):
 
-### Sumar PM de los mismos lineups:
 df_dummys_PM_2 <- df_dummys_PM %>% select(-c(SeasonGame, quarter))
-#names(df_dummys_PM_2)
 
 PM_Lineups <-  aggregate(. ~ lineups, df_dummys_PM_2, sum, na.rm = TRUE) %>%
                   mutate(stint_times = Print_MS(stint_times))
