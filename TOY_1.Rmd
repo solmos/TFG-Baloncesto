@@ -17,6 +17,11 @@ library(stringr)               # Para str_pad
 library(lubridate)
 library(reshape)
 library(tidyselect)
+
+library(corrplot)
+library(RColorBrewer)
+library("colorspace")
+library(graphics)
 ```
 
 
@@ -296,7 +301,7 @@ df_dummys
 
 Ahora mismo tenemos un DF con el PM con HOME como referencia (si es positivo, ganaban HOME. Si es Negativo ganaban AWAY). Luego tenemos variables "dummys" con 1 si estaban jugando como HOME, -1 si estaban jugando como AWAY y 0 si no estaban en pista.
 
-# PARTE 3: PM por stint
+# PARTE 3: PM por stint (no cal)
 
 ```{r}
 df_dummys_PM <- df_dummys %>% 
@@ -310,6 +315,28 @@ df_dummys_PM_2 <- df_dummys_PM %>% select(-c(SeasonGame, quarter))
 PM_Lineups <-  aggregate(. ~ lineups, df_dummys_PM_2, sum, na.rm = TRUE) %>%
                   mutate(stint_times = Print_MS(stint_times))
 PM_Lineups
+```
+# PM CLASSIC:
+
+```{r}
+PM_C <- colSums(PM_Lineups[3:ncol(PM_Lineups)])
+
+
+barplot(PM_C, xaxt = "n", xlab='PM Classic')
+axis(1, at=1:15, labels=FALSE)
+text(x = seq(1, 15, by=1), par("usr")[3] - 0.2, labels = names(PM_C), srt = 45, pos = 1, xpd = TRUE)
+
+table(PM_C)
+```
+
+# PARTE 4: Modelar
+
+Variable outcome: PM
+
+```{r}
+names(df_dummys)
+mod1 <- lm(PM ~ . -SeasonGame -quarter -lineups, data=df_dummys)
+summary(mod1)
 ```
 
 
