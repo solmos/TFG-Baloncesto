@@ -301,7 +301,7 @@ df_dummys
 
 Ahora mismo tenemos un DF con el PM con HOME como referencia (si es positivo, ganaban HOME. Si es Negativo ganaban AWAY). Luego tenemos variables "dummys" con 1 si estaban jugando como HOME, -1 si estaban jugando como AWAY y 0 si no estaban en pista.
 
-# PARTE 3: PM por stint (no cal)
+# PARTE 3: PM por stint (PM CLASSIC)
 
 ```{r}
 df_dummys_PM <- df_dummys %>% 
@@ -316,7 +316,6 @@ PM_Lineups <-  aggregate(. ~ lineups, df_dummys_PM_2, sum, na.rm = TRUE) %>%
                   mutate(stint_times = Print_MS(stint_times))
 PM_Lineups
 ```
-# PM CLASSIC:
 
 ```{r}
 PM_C <- colSums(PM_Lineups[3:ncol(PM_Lineups)])
