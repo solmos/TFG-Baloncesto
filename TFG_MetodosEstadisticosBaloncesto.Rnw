@@ -20,6 +20,7 @@
 \usepackage{booktabs}											  	                % Nicer tables
 \usepackage{fix-cm}												  	                % Custom fontsizes
 \usepackage{hyperref}                                         % Link Clicks
+\usepackage{filecontents}
 
 
 
@@ -251,8 +252,13 @@ De este análisis, es frecuente encontrar variantes: mapa de calor del equipo, m
 
 \clearpage
 
+\addcontentsline{toc}{section}{Referencias}
 
-\section{Bibliografia}
+\begin{thebibliography}{X}
+	\bibitem{RAPM} \textsc{Joseph Sill}, \textit{Improved NBA Adjusted +/- Using Regularization and Out-of-Sample Testing}, PDF, 6 Marzo 2010.
+	
+	\bibitem{HappyGH} \textsc{Happy Git}, \textit{Let’s Git started}, url: \url{https://happygitwithr.com/index.html}, .
+\end{thebibliography}
 
 \clearpage
 
